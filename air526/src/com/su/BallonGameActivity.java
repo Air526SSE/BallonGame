@@ -23,9 +23,7 @@ public class BallonGameActivity extends Activity {
     private TextView txtView;
     private TextView showend;
     private Thread ti;
-    
-   
-	
+    	
 	
     /** Called when the activity is first created. */
     @Override
