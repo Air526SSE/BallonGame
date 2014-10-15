@@ -22,8 +22,7 @@ public class BallonGameActivity extends Activity {
 	private int recLen = 0;
 	private int lesLen = 10;
 
-	private int ballsum = 0;
-	public int test = 3;
+	public int ballsum = 0;
 
 	private TextView txtView;
 	private TextView showend;
@@ -43,10 +42,8 @@ public class BallonGameActivity extends Activity {
 		ti = new Thread(new MyThread());
 		ti.start();
 
-		
-		
 		initGame1();
-		
+
 		// new Thread(new MyThread()).start();
 
 		btnRestart.setOnClickListener(new View.OnClickListener() {
@@ -80,21 +77,19 @@ public class BallonGameActivity extends Activity {
 		btnRestart.setVisibility(View.INVISIBLE);
 		showend.setVisibility(View.INVISIBLE);
 
-		
 		sqlEngine = new sqlEngThread(new BallonWhileHandler());
 		sqlEngine.startThead();
-		test--;
-		
+	
+
 	}
 
 	class BallonWhileHandler extends Handler {
 		@Override
 		public void handleMessage(Message msg) {
 
-			 //if(test>0)
-			 //{
-			if(msg.what == 1)
-				{
+			// if(test>0)
+			// {
+			if (msg.what == 1) {
 				int d = msg.arg1;
 				if (d >= 180) {
 					count++;
@@ -103,25 +98,27 @@ public class BallonGameActivity extends Activity {
 						if (level <= 8) {
 							imgshow.setBackgroundResource(imgs[level]);
 							if (level == 8) {
-								sqlEngine.stopThead();
-								// btnRestart.setVisibility(View.VISIBLE);
-								sqlEngine = null;
+								ballsum++;
+								level = 0;
+								imgshow.setBackgroundResource(imgs[level]);
+								if (lesLen <= 0) {
+									sqlEngine.stopThead();
+									btnRestart.setVisibility(View.VISIBLE);
+									sqlEngine = null;
+									showend.setVisibility(View.VISIBLE);
+									showend.setText("Yeah！破了 " + ballsum
+											+ "个球！");
+								}
 
 							}
 						}
 						count = 0;
 					}
 				}
-				// showend.setVisibility(View.VISIBLE);
-				// showend.setText("Yeah！破了 "+recLen+"个球！");
-				// btnRestart.setVisibility(View.VISIBLE);
-				//level=0;
-				}
-				//test--;}
-			
-			// ballsum++;
-				 
+
+			}
 		}
+
 	}
 
 	class BallonHandler extends Handler {
@@ -168,20 +165,18 @@ public class BallonGameActivity extends Activity {
 			super.handleMessage(msg);
 			switch (msg.what) {
 			case 1:
-				while(test>0)
-				{
+
 				lesLen--;
 				txtView.setText("" + lesLen);
-				test--;
-				}
-				}
-			
+			}
+
 		}
 	};
 
-	public class MyThread implements Runnable { // thread
+	class MyThread implements Runnable { // thread
 		@Override
 		public void run() {
+
 			while (lesLen > 0) {
 				try {
 					Thread.sleep(1000); // sleep 1000ms
