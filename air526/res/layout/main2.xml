@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/AbsoluteLayout1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/white" >
+
+    <Spinner
+        android:id="@+id/Color"
+        android:layout_width="127dp"
+        android:layout_height="wrap_content"
+        android:layout_x="202dp"
+        android:layout_y="42dp" />
+
+    <Spinner
+        android:id="@+id/Shape"
+        android:layout_width="127dp"
+        android:layout_height="wrap_content"
+        android:layout_x="202dp"
+        android:layout_y="127dp" />
+
+    <TextView
+        android:id="@+id/color_selected"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_x="206dp"
+        android:layout_y="22dp"
+        android:text="@string/colorselected"
+        android:textColor="@drawable/black" />
+
+    <TextView
+        android:id="@+id/shape_selected"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_x="206dp"
+        android:layout_y="105dp"
+        android:text="@string/shapeselected"
+        android:textColor="@drawable/black" />
+
+    <TextView
+        android:id="@+id/mono_selected"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_x="206dp"
+        android:layout_y="198dp"
+        android:text="@string/monoselected"
+        android:textColor="@drawable/black" />
+
+    <Spinner
+        android:id="@+id/Mono"
+        android:layout_width="127dp"
+        android:layout_height="wrap_content"
+        android:layout_x="202dp"
+        android:layout_y="223dp" />
+
+    <ImageView
+        android:id="@+id/ImageBalloon"
+        android:layout_width="228dp"
+        android:layout_height="338dp"
+        android:layout_x="-24dp"
+        android:layout_y="13dp"
+        android:src="@drawable/balloonwhite"
+        android:visibility="visible" />
+
+</AbsoluteLayout>

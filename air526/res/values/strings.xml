@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello">Hello World, BallonGameActivity!</string>
-    <string name="app_name">BallonBoom</string>
-
+    <string name="app_name">Balloon</string>   
+    <string name="action_settings">Settings</string>   
+    <string name="colorselected">选择颜色</string>
+    <string name="shapeselected">选择形状</string>
+    <string name="monoselected">选择材料</string>
+    
 </resources>

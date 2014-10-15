@@ -21,6 +21,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tu.Balloon"   >        
+            <intent-filter>
+                <action android:name="android.intent.action.Balloon" />
+
+                <category android:name="android.intent.category.BalloonLauncher" />
+            </intent-filter>
         </activity>        
     </application>
       <uses-permission  android:name="android.permission.RECORD_AUDIO" />
