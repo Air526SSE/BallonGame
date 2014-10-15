@@ -26,6 +26,7 @@ public class Balloon extends Activity {
 	private static String mode = new String();
 
 	private Button commit;
+	private Button cancle;
 	//private TextView textColorSelected;
 	//private TextView textShapeSelected;
 	//private TextView textMonoSelected;
@@ -47,6 +48,7 @@ public class Balloon extends Activity {
 		shapeSpinner = (Spinner) findViewById(R.id.Shape);
 		monoSpinner = (Spinner) findViewById(R.id.Mono);
 		commit = (Button)findViewById(R.id.commit);
+		cancle = (Button)findViewById(R.id.cancle);
 		
 		//textColorSelected = (TextView) findViewById(R.id.color_selected);
 		////textShapeSelected = (TextView) findViewById(R.id.shape_selected);
@@ -227,6 +229,16 @@ public class Balloon extends Activity {
 			}
 		});
 		
+		cancle.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+				Balloon.this.finish();
+				
+			}
+		});
 		
 		
 		/*Bundle bundle = new Bundle();

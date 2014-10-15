@@ -24,24 +24,33 @@
           android:id="@+id/imgshow"
           />
     
-      
+      <LinearLayout 
+          android:layout_width="wrap_content"
+          android:layout_height="fill_parent"
+          android:orientation="vertical"
+          android:paddingTop="300dp"
+          android:paddingLeft="100dp"
+          android:paddingRight="60dp">
       <Button
          android:id="@+id/btnRestart"
          android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="重新开始游戏"
-          android:layout_gravity="center"
+          android:text="重新开始"
+		  android:background="#AAFF8C00"
+		  android:textSize="25dp"
+		  android:layout_marginBottom="5dp"
           android:visibility="invisible"
          />
       <Button
          android:id="@+id/btnBack"
          android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="返回"
-          android:layout_gravity="center"
+          android:background="#AA008000"
+		  android:textSize="25dp"
+          android:text="返回选择"
           android:visibility="invisible"
          />
-      
+      </LinearLayout>
       <TextView
          android:id="@+id/show_end"
          android:layout_width="wrap_content"

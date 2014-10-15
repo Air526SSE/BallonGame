@@ -76,6 +76,6 @@
         android:layout_height="wrap_content"
         android:layout_x="185dp"
         android:layout_y="378dp"
-        android:text="取消" />
+        android:text="返回" />
 
 </AbsoluteLayout>

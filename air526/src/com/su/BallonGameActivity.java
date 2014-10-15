@@ -20,7 +20,7 @@ public class BallonGameActivity extends Activity {
 	private int[] imgs = { R.drawable.balloon0, R.drawable.balloon1,
 			R.drawable.balloon2, R.drawable.balloon3, R.drawable.balloon4,
 			R.drawable.balloon5, R.drawable.balloon6, R.drawable.balloon7,
-			R.drawable.balloon8 };
+			R.drawable.baopo3_1 };
 	private sqlEngThread sqlEngine;
 
 	private int recLen = 0;
