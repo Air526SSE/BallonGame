@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:label="@string/app_name"
-            android:name="com.su.BallonGameActivity" >
+            android:name="com.tu.Balloon" >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,12 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.tu.Balloon"   >        
-            <intent-filter>
-                <action android:name="android.intent.action.Balloon" />
-
-                <category android:name="android.intent.category.BalloonLauncher" />
-            </intent-filter>
+            android:name="com.su.BallonGameActivity"   >                   
         </activity>        
     </application>
       <uses-permission  android:name="android.permission.RECORD_AUDIO" />

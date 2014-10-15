@@ -62,4 +62,20 @@
         android:src="@drawable/balloonwhite"
         android:visibility="visible" />
 
+    <Button
+        android:id="@+id/commit"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_x="95dp"
+        android:layout_y="378dp"
+        android:text="开始" />
+
+    <Button
+        android:id="@+id/cancle"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_x="185dp"
+        android:layout_y="378dp"
+        android:text="取消" />
+
 </AbsoluteLayout>
