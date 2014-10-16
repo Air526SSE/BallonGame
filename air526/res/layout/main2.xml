@@ -3,21 +3,24 @@
     android:id="@+id/AbsoluteLayout1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/white" >
+    android:background="@drawable/white"
+    >
 
     <Spinner
         android:id="@+id/Color"
         android:layout_width="127dp"
         android:layout_height="wrap_content"
         android:layout_x="202dp"
-        android:layout_y="42dp" />
+        android:layout_y="42dp" 
+        android:gravity="center"/>
 
     <Spinner
         android:id="@+id/Shape"
         android:layout_width="127dp"
         android:layout_height="wrap_content"
         android:layout_x="202dp"
-        android:layout_y="127dp" />
+        android:layout_y="127dp" 
+        android:gravity="center"/>
 
     <TextView
         android:id="@+id/color_selected"
@@ -51,7 +54,8 @@
         android:layout_width="127dp"
         android:layout_height="wrap_content"
         android:layout_x="202dp"
-        android:layout_y="223dp" />
+        android:layout_y="223dp" 
+        android:gravity="center"/>
 
     <ImageView
         android:id="@+id/ImageBalloon"
