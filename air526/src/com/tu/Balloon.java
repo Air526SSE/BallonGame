@@ -19,9 +19,9 @@ import com.su.MainScreenActivity;
 import com.su.R;
 
 public class Balloon extends Activity {
-	private static final String[] colorstr = { "ºì", "»Æ", "ÂÌ", "À¶" };
-	private static final String[] shapestr = { "ĞÄĞÎ", "öèÓã", "¹íÁ³", "ÆÕÍ¨" };
-	private static final String[] monostr = { "Õı¼ÆÊ±","µ¹¼ÆÊ±" };
+	private static final String[] colorstr = { "çº¢è‰²", "é»„è‰²", "ç»¿è‰²", "è“è‰²" };
+	private static final String[] shapestr = { "æ™®é€š", "å¿ƒå‹", "é²¨é±¼", "ç‚¸å¼¹" };
+	private static final String[] monostr = { "æ­£è®¡æ—¶","å€’è®¡æ—¶" };
 	
 	private static String color = new String();
 	private static String mode = new String();
@@ -55,7 +55,7 @@ public class Balloon extends Activity {
 		////textShapeSelected = (TextView) findViewById(R.id.shape_selected);
 		//textMonoSelected = (TextView) findViewById(R.id.mono_selected);
 
-		// ½«¿ÉÑ¡ÄÚÈİÓëArrayAdapterÁ¬½ÓÆğÀ´
+		// ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ArrayAdapterï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		coloradapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_item, colorstr);
 		shapeadapter = new ArrayAdapter<String>(this,
@@ -63,43 +63,43 @@ public class Balloon extends Activity {
 		monoadapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_item, monostr);
 
-		// ÉèÖÃÏÂÀ­ÁĞ±íµÄ·ç¸ñ
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ±ï¿½Ä·ï¿½ï¿½
 		coloradapter.setDropDownViewResource(R.layout.myspinner_dropdown);
 		shapeadapter.setDropDownViewResource(R.layout.myspinner_dropdown);
 		monoadapter.setDropDownViewResource(R.layout.myspinner_dropdown);
 
-		// ½«adapter2 Ìí¼Óµ½spinnerÖĞ
+		// ï¿½ï¿½adapter2 ï¿½ï¿½Óµï¿½spinnerï¿½ï¿½
 		colorSpinner.setAdapter(coloradapter);
 		shapeSpinner.setAdapter(shapeadapter);
 		monoSpinner.setAdapter(monoadapter);
 
-		// Ìí¼ÓÊÂ¼şSpinnerÊÂ¼ş¼àÌı
+		// ï¿½ï¿½ï¿½ï¿½Â¼ï¿½Spinnerï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½
 		colorSpinner
 				.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
 					@Override
 					public void onItemSelected(AdapterView<?> arg0, View arg1,
 							int arg2, long arg3) {
-						//textColorSelected.setText("ÄãÑ¡ÔñµÄÑÕÉ«ÊÇ£º" + colorstr[arg2]);
+						//textColorSelected.setText("ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½É«ï¿½Ç£ï¿½" + colorstr[arg2]);
 						arg0.setVisibility(View.VISIBLE);
 						String colorBeSelected = colorSpinner.getSelectedItem()
 								.toString();
 						ImageView imageBalloon = (ImageView) findViewById(R.id.ImageBalloon);
-						if (colorBeSelected.equals("ºì")) {
+						if (colorBeSelected.equals("çº¢è‰²")) {
 							// imageBalloon.setBackgroundColor(Color.parseColor("#FF0000"));
 							color = colorBeSelected;
 							imageBalloon.setImageResource(R.drawable.red);
 						}
-						if (colorBeSelected.equals("»Æ")) {
+						if (colorBeSelected.equals("é»„è‰²")) {
 							// imageBalloon.setBackgroundColor(Color.parseColor("#FFFF37"));
 							color = colorBeSelected;
 							imageBalloon.setImageResource(R.drawable.yellow);
 						}
-						if (colorBeSelected.equals("ÂÌ")) {
+						if (colorBeSelected.equals("ç»¿è‰²")) {
 							// imageBalloon.setBackgroundColor(Color.parseColor("#00DB00"));
 							color = colorBeSelected;
 							imageBalloon.setImageResource(R.drawable.green);
 						}
-						if (colorBeSelected.equals("À¶")) {
+						if (colorBeSelected.equals("è“è‰²")) {
 							// imageBalloon.setBackgroundColor(Color.parseColor("#0000E3"));
 							color = colorBeSelected;
 							imageBalloon.setImageResource(R.drawable.blue);
@@ -118,7 +118,7 @@ public class Balloon extends Activity {
 					@Override
 					public void onItemSelected(AdapterView<?> arg0, View arg1,
 							int arg2, long arg3) {
-						//textShapeSelected.setText("ÄãÑ¡ÔñµÄĞÎ×´ÊÇ£º" + shapestr[arg2]);
+						//textShapeSelected.setText("ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½×´ï¿½Ç£ï¿½" + shapestr[arg2]);
 						arg0.setVisibility(View.VISIBLE);
 					}
 
@@ -134,16 +134,16 @@ public class Balloon extends Activity {
 					@Override
 					public void onItemSelected(AdapterView<?> arg0, View arg1,
 							int arg2, long arg3) {
-						//textMonoSelected.setText("ÄãÑ¡ÔñµÄ²ÄÁÏÊÇ£º" + monostr[arg2]);
+						//textMonoSelected.setText("ï¿½ï¿½Ñ¡ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ï¿½Ç£ï¿½" + monostr[arg2]);
 						arg0.setVisibility(View.VISIBLE);
 						
 						String modeselect = monoSpinner.getSelectedItem().toString();
-						if(modeselect.equals("Õı¼ÆÊ±"))
+						if(modeselect.equals("æ­£è®¡æ—¶"))
 						{
 							mode = modeselect;
 						}
 						
-						if(modeselect.equals("µ¹¼ÆÊ±"))
+						if(modeselect.equals("å€’è®¡æ—¶"))
 						{
 							mode = modeselect;
 						}

@@ -54,7 +54,7 @@ public class BallonGameActivity extends Activity {
 			amode = intent.getStringExtra("mode");
 		}
 
-		if (amode.equals("Õı¼ÆÊ±")) {
+		if (amode.equals("æ­£è®¡æ—¶")) {
 			ti = new Thread(new MyThread());
 			ti.start();
 			initGame();
@@ -71,7 +71,7 @@ public class BallonGameActivity extends Activity {
 			});
 		}
 
-		if (amode.equals("µ¹¼ÆÊ±")) {
+		if (amode.equals("å€’è®¡æ—¶")) {
 			ti = new Thread(new MyThread1());
 			ti.start();
 			initGame1();
@@ -151,8 +151,8 @@ public class BallonGameActivity extends Activity {
 									btnRestart.setVisibility(View.VISIBLE);	
 									btnBack.setVisibility(View.VISIBLE);
 									showend.setVisibility(View.VISIBLE);
-									showend.setText("Ç×£¬ÆÆÁË " + ballsum
-											+ "¸öÇò£¡");
+									showend.setText("æ­å–œæ‚¨ï¼æ‚¨ç ´äº† " + ballsum
+											+ "ä¸ªçƒï¼");
 									sqlEngine = null;
 								}
 							}
@@ -183,7 +183,7 @@ public class BallonGameActivity extends Activity {
 								btnRestart.setVisibility(View.VISIBLE);
 								btnBack.setVisibility(View.VISIBLE);
 								showend.setVisibility(View.VISIBLE);
-								showend.setText("¹§Ï²£¡ ÄúÓÃÁË " + (++recLen) + "Ãë£¡");
+								showend.setText("æ­å–œï¼ä½ ç”¨äº† " + (++recLen) + "ç§’ï¼");
 								sqlEngine = null;
 							}
 						}
