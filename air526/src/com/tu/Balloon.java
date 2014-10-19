@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.su.BallonGameActivity;
+import com.su.MainScreenActivity;
 import com.su.R;
 
 public class Balloon extends Activity {
@@ -75,6 +76,7 @@ public class Balloon extends Activity {
 		// 添加事件Spinner事件监听
 		colorSpinner
 				.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+					@Override
 					public void onItemSelected(AdapterView<?> arg0, View arg1,
 							int arg2, long arg3) {
 						//textColorSelected.setText("你选择的颜色是：" + colorstr[arg2]);
@@ -104,6 +106,7 @@ public class Balloon extends Activity {
 						}
 					}
 
+					@Override
 					public void onNothingSelected(AdapterView<?> arg0) {
 
 					}
@@ -112,12 +115,14 @@ public class Balloon extends Activity {
 
 		shapeSpinner
 				.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+					@Override
 					public void onItemSelected(AdapterView<?> arg0, View arg1,
 							int arg2, long arg3) {
 						//textShapeSelected.setText("你选择的形状是：" + shapestr[arg2]);
 						arg0.setVisibility(View.VISIBLE);
 					}
 
+					@Override
 					public void onNothingSelected(AdapterView<?> arg0) {
 
 					}
@@ -126,6 +131,7 @@ public class Balloon extends Activity {
 
 		monoSpinner
 				.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+					@Override
 					public void onItemSelected(AdapterView<?> arg0, View arg1,
 							int arg2, long arg3) {
 						//textMonoSelected.setText("你选择的材料是：" + monostr[arg2]);
@@ -143,6 +149,7 @@ public class Balloon extends Activity {
 						}
 					}
 
+					@Override
 					public void onNothingSelected(AdapterView<?> arg0) {
 
 					}
@@ -234,8 +241,11 @@ public class Balloon extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				Intent intent = new Intent();
+				intent.setClass(Balloon.this, MainScreenActivity.class);
+				startActivity(intent);;
 				
-				Balloon.this.finish();
+				//Balloon.this.finish();
 				
 			}
 		});

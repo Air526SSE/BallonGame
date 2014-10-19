@@ -10,14 +10,13 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
-        android:label="欢迎来吹啊吹啊吹气球"
+        android:icon="@drawable/fengmian"
+        android:label="吹吧"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name=".MainScreenActivity"
-            >
+        <activity android:name=".Entry" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -25,6 +24,10 @@
         </activity>
         <activity
             android:name="com.tu.Balloon"
+            android:label="@string/title_activity_main_screen" >
+        </activity>
+        <activity
+            android:name=".MainScreenActivity"
             android:label="@string/title_activity_main_screen" >
         </activity>
     </application>

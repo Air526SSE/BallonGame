@@ -145,6 +145,7 @@ public class BallonGameActivity extends Activity {
 								ballsum++;
 								level = 0;
 								imgshow.setBackgroundResource(imgs[level]);
+								//imgshow.setBackgroundResource(imgs[++level]);
 								if (lesLen <= 0) {
 									sqlEngine.stopThead();
 									btnRestart.setVisibility(View.VISIBLE);	
@@ -194,6 +195,7 @@ public class BallonGameActivity extends Activity {
 	}
 
 	final Handler handler = new Handler() { // handle
+		@Override
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 1:
@@ -220,6 +222,7 @@ public class BallonGameActivity extends Activity {
 	}
 
 	final Handler handler1 = new Handler() { // handle
+		@Override
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
 			switch (msg.what) {

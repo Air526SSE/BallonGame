@@ -8,5 +8,6 @@
     <string name="monoselected">选择模式</string>
     <string name="title_activity_main_screen">MainScreenActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_entry">Entry</string>
 
 </resources>
