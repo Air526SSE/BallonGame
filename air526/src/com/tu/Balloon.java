@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
@@ -38,12 +39,15 @@ public class Balloon extends Activity {
 	private ArrayAdapter<String> shapeadapter;
 	private ArrayAdapter<String> monoadapter;
 	Animation myAnimation;
+	//private Intent intentMusic = new Intent("com.angel.Android.MUSIC");
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main2);
+		
+	//	startService(intentMusic);
 
 		colorSpinner = (Spinner) findViewById(R.id.Color);
 		shapeSpinner = (Spinner) findViewById(R.id.Shape);
@@ -112,6 +116,7 @@ public class Balloon extends Activity {
 					}
 
 				});
+		
 
 		shapeSpinner
 				.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
@@ -218,7 +223,8 @@ public class Balloon extends Activity {
 		/*String colorBeSelected = colorSpinner.getSelectedItem().toString();
 		String shapeBeSelected = colorSpinner.getSelectedItem().toString();
 		String monoBeSelected = colorSpinner.getSelectedItem().toString();*/
-
+		
+	//	commit.setImageDrawable(getResources().getDrawable(R.drawable.start));  
 		commit.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
