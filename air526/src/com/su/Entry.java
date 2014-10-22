@@ -1,5 +1,7 @@
 package com.su;
 
+import com.tu.MusicServer;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.gesture.GestureOverlayView;
@@ -10,16 +12,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 
+
 public class Entry extends Activity implements OnGestureListener, android.view.GestureDetector.OnGestureListener {
 
 	private int verticalMinDistance = 20;
     private int minVelocity         = 0;
 	GestureDetector detector;
-	
+	//Intent intentMusic = new Intent(Entry.this, MusicServer.class);
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_entry);
+		
+		
+		startService(new Intent(Entry.this, MusicServer.class));
 		
 		detector = new GestureDetector(this,this);
 	}
@@ -130,4 +136,11 @@ public class Entry extends Activity implements OnGestureListener, android.view.G
 
 	        return false;
 	}
+	@Override
+	 protected void onStop() {
+	  // TODO Auto-generated method stub
+	  Intent intent = new Intent(Entry.this,MusicServer.class);
+	  stopService(intent);
+	  super.onStop();
+	 }
 }

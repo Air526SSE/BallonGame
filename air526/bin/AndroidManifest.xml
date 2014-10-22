@@ -29,7 +29,13 @@
         <activity
             android:name=".MainScreenActivity"
             android:label="@string/title_activity_main_screen" >
-        </activity>
+        </activity>       
+         <service android:name="com.tu.MusicServer" android:enabled="true">
+            <intent-filter>
+                <action android:name="com.angel.Android.MUSIC" />
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+        </service>
     </application>
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
