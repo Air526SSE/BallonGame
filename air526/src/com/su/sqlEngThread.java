@@ -11,13 +11,21 @@ public class sqlEngThread extends Thread {
 	private static int SAMPLE_RATE_IN_HZ = 8000;// 44100
 	private boolean bRunning = true;
 	private Handler handle;
+	private Handler time;
 	private AudioRecord recordInstance;
 	private int sqlValue = 0;
 
 	public sqlEngThread(Handler ParamHandler) {
 		this.handle = ParamHandler;
+	
 	}
 
+	public sqlEngThread(Handler ParamHandler, Handler TimeHandler) {
+		this.handle = ParamHandler;
+		this.time = TimeHandler;
+	}
+	
+	
 	@Override
 	public void run() {
 		int bs = AudioRecord.getMinBufferSize(SAMPLE_RATE_IN_HZ,
@@ -36,13 +44,15 @@ public class sqlEngThread extends Thread {
 				for (int i = 0; i < m; i++) {
 					sum += data[i] * data[i];
 				}
-				sqlValue = (int) (Math.log10(Math.sqrt(sum / m) / Po)) * 20;
-				// sqlValue = (int) (Math.log10(Math.sqrt(sum / m) )) * 20;
-				Message msg = new Message();
+				sqlValue = (int) (Math.log10(Math.sqrt(sum / m) / Po)) * 20;			
+				//Message msg = new Message();
+				Message msg = handle.obtainMessage();
 				msg.what = 1;
 				msg.arg1 = sqlValue;
 				handle.sendMessage(msg);
+				
 
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
