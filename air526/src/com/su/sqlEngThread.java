@@ -44,8 +44,7 @@ public class sqlEngThread extends Thread {
 				for (int i = 0; i < m; i++) {
 					sum += data[i] * data[i];
 				}
-				sqlValue = (int) (Math.log10(Math.sqrt(sum / m) / Po)) * 20;			
-				//Message msg = new Message();
+				sqlValue = (int) (Math.log10(Math.sqrt(sum / m) / Po)) * 20;							
 				Message msg = handle.obtainMessage();
 				msg.what = 1;
 				msg.arg1 = sqlValue;

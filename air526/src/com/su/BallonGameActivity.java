@@ -140,7 +140,7 @@ public class BallonGameActivity extends Activity {
 
 	}
 
-	private void Select(Intent intent){
+	private void Select(Intent intent){//根据intent传来的值选择相应的方法
 		if (intent.getStringExtra("shape") != null) {
 			shape = intent.getStringExtra("shape");
 		}
@@ -151,19 +151,19 @@ public class BallonGameActivity extends Activity {
 
 		if (amode.equals("正计时")) {
 
-			// initYellowGame();
+			 initYellowGame();
 			//initRocGame();
-			initFlyGame();
+			//initFlyGame();
 			//flyRoc();
 			
 			btnRestart.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
 
-					// initYellowGame();
+					 initYellowGame();
 					//initRocGame();
 					flynu = 0;
-					initFlyGame();
+					//initFlyGame();
 					//flyRoc();
 					
 
@@ -196,12 +196,13 @@ public class BallonGameActivity extends Activity {
 		}
 	}
 
-	private void initRocGame() {
+	private void initRocGame() {//正吹火箭
 		// TODO Auto-generated method stub
 		level = 0;
 		recLen = 0;
 		se = 0;
-
+		flynu = 0;
+		
 		imgshow.setBackgroundResource(roc[0]);
 		btnRestart.setVisibility(View.INVISIBLE);
 		btnBack.setVisibility(View.INVISIBLE);
@@ -215,7 +216,7 @@ public class BallonGameActivity extends Activity {
 		ti.start();
 	}		
 	
-	private void initFlyGame() {
+	private void initFlyGame() {//火箭飞
 		// TODO Auto-generated method stub
 		level = 0;
 		recLen = 0;
@@ -234,7 +235,7 @@ public class BallonGameActivity extends Activity {
 		//ti.start();
 	}
 
-	private void initHotGame() {
+	private void initHotGame() {//正吹热气球
 		// TODO Auto-generated method stub
 		level = 0;
 		recLen = 0;
@@ -261,7 +262,7 @@ public class BallonGameActivity extends Activity {
 			
 		}*/
 
-	private void initYellowGame() {
+	private void initYellowGame() {//正吹笑脸
 		// TODO Auto-generated method stub
 		level = 0;
 		recLen = 0;
@@ -280,7 +281,7 @@ public class BallonGameActivity extends Activity {
 		ti.start();
 	}
 
-	private void initGame1() {
+	private void initGame1() {//倒吹笑脸
 		// TODO Auto-generated method stub
 		level = 0;
 		lesLen = 9;
@@ -299,7 +300,7 @@ public class BallonGameActivity extends Activity {
 
 	}
 
-	class YellowWhileHandler extends Handler {
+	class YellowWhileHandler extends Handler {//倒吹笑脸的实现
 		@Override
 		public void handleMessage(Message msg) {
 			if (msg.what == 1) {
@@ -340,7 +341,7 @@ public class BallonGameActivity extends Activity {
 
 	}
 
-	class BallonHandlerYellow extends Handler {
+	class BallonHandlerYellow extends Handler {//正吹笑脸的实现
 		@Override
 		public void handleMessage(Message msg) {
 			if (msg.what == 1) {
@@ -353,6 +354,8 @@ public class BallonGameActivity extends Activity {
 							imgshow.setBackgroundResource(yellow[level]);
 							if (level == 22) {
 
+								VibratorUtil.Vibrate(BallonGameActivity.this, 100);
+								
 								sqlEngine.stopThead();
 								btnRestart.setVisibility(View.VISIBLE);
 								btnBack.setVisibility(View.VISIBLE);
@@ -373,7 +376,7 @@ public class BallonGameActivity extends Activity {
 		}
 	}
 
-	class BallonHandlerRoc extends Handler {
+	class BallonHandlerRoc extends Handler {//正吹火箭
 		@Override
 		public void handleMessage(Message msg) {
 			if (msg.what == 1) {
@@ -406,7 +409,7 @@ public class BallonGameActivity extends Activity {
 		}
 	}
 
-	class BallonHandlerFly extends Handler {
+	class BallonHandlerFly extends Handler {//火箭飞的实现
 		@Override
 		public void handleMessage(Message msg) {
 			if (msg.what == 1) {
@@ -419,17 +422,15 @@ public class BallonGameActivity extends Activity {
 							imgshow.setBackgroundResource(roc[level]);
 							if (level == 28) {
 
-								//sqlEngine.notify();
+								
+								
 								sqlEngine.stopThead();																
 								sqlEngine = null;
 								
-								for(int i =0; i<fly.length;i++)
-								{
-									imgshow.setBackgroundResource(fly[i]);
-								}
-								
-								//flyRoc();
-								
+								Message message = new Message();
+								message.what = 1;
+								flyHandler.sendMessage(message);
+																
 							}
 						}
 						count = 0;
@@ -439,7 +440,7 @@ public class BallonGameActivity extends Activity {
 		}
 	}
 	
-	class BallonHandlerHot extends Handler {
+	class BallonHandlerHot extends Handler {//正吹热气球的实现
 		@Override
 		public void handleMessage(Message msg) {
 			if (msg.what == 1) {
@@ -472,7 +473,7 @@ public class BallonGameActivity extends Activity {
 		}
 	}
 
-	final Handler handler = new Handler() { // handle
+	final Handler handler = new Handler() { // 10秒倒计时
 		@Override
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -489,7 +490,7 @@ public class BallonGameActivity extends Activity {
 		}
 	};
 
-	class RocThread implements Runnable { // thread
+	class RocThread implements Runnable { // 正吹火箭的计时
 		@Override
 		public void run() {
 			while (level < 28) {
@@ -504,7 +505,7 @@ public class BallonGameActivity extends Activity {
 		}
 	}
 
-	class MyThread implements Runnable { // thread
+	class MyThread implements Runnable { // 正吹线程
 		@Override
 		public void run() {
 			while (level < 22) {
@@ -519,7 +520,7 @@ public class BallonGameActivity extends Activity {
 		}
 	}
 
-	final Handler handler1 = new Handler() { // handle
+	final Handler handler1 = new Handler() { // 倒吹的计时
 		@Override
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
@@ -536,7 +537,7 @@ public class BallonGameActivity extends Activity {
 		}
 	};
 
-	class MyThread1 implements Runnable { // thread
+	class MyThread1 implements Runnable { // 倒吹的线程
 		@Override
 		public void run() {
 			while (seLen > 0) {
@@ -551,21 +552,27 @@ public class BallonGameActivity extends Activity {
 		}
 	}
 
-	final Handler flyHandler = new Handler() {
+	final Handler flyHandler = new Handler() {//火箭飞的线程
+		int i =0;
 		@Override
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 1:
-			
-				imgshow.setBackgroundResource(fly[flynu]);
+				
+				while(flynu<64){
+					while(i>800){
+				imgshow.setBackgroundResource(fly[flynu]);				
 				flynu++;
+				i =0;}
+					i++;
+				}
 			}
 			super.handleMessage(msg);
 		}
 
 	};
 
-	class FlyThread implements Runnable {
+	/*class FlyThread implements Runnable {
 
 		@Override
 		public void run() {
@@ -580,7 +587,7 @@ public class BallonGameActivity extends Activity {
 				}
 			}
 		}
-			}
+			}*/
 	}
 
 
