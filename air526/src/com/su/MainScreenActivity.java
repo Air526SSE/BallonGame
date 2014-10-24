@@ -1,6 +1,7 @@
 package com.su;
 
 import com.tu.Balloon;
+import com.tu.MusicServer;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -19,6 +20,9 @@ public class MainScreenActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_screen);
+		
+		
+		startService(new Intent(MainScreenActivity.this, MusicServer.class));
 	
 		start = (Button)findViewById(R.id.button3);
 		cancle = (Button)findViewById(R.id.button2);
@@ -75,4 +79,11 @@ public class MainScreenActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	/*@Override
+	 protected void onStop() {
+	  // TODO Auto-generated method stub
+	  Intent intent = new Intent(MainScreenActivity.this,MusicServer.class);
+	  stopService(intent);
+	  super.onStop();
+	 }*/
 }
