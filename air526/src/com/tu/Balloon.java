@@ -1,31 +1,36 @@
 package com.tu;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.su.BallonGameActivity;
 import com.su.MainScreenActivity;
 import com.su.R;
+import com.tu.SpinnerAdapter;
 
 public class Balloon extends Activity {
 	private static final String[] backgroundstr = { "草场", "蓝天", "树叶", "海洋" };
-	private static final String[] shapestr = { "普通", "心型", "热气球", "火箭" };
+	private static final String[] shapestr = { "普通", "热气球", "火箭" };
 	private static final String[] monostr = { "正计时", "倒计时", "火箭模式" };
 	private static final String[] rocket = { "火箭模式" };
 
@@ -41,6 +46,7 @@ public class Balloon extends Activity {
 	// private TextView textColorSelected;
 	// private TextView textShapeSelected;
 	// private TextView textMonoSelected;
+	private ImageView balloonImage;
 	private Spinner backSpinner;
 	private Spinner shapeSpinner;
 	private Spinner monoSpinner;
@@ -57,19 +63,20 @@ public class Balloon extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main2);
 
-		// startService(intentMusic);
+		Init();
+		
+	}
+	public void Init(){
+		
 
 		backSpinner = (Spinner) findViewById(R.id.Color);
 		shapeSpinner = (Spinner) findViewById(R.id.Shape);
 		monoSpinner = (Spinner) findViewById(R.id.Mono);
 		commit = (Button) findViewById(R.id.commit);
 		cancle = (Button) findViewById(R.id.cancle);
+		balloonImage = (ImageView) findViewById(R.id.ImageBalloon);
 
-		// textColorSelected = (TextView) findViewById(R.id.color_selected);
-		// //textShapeSelected = (TextView) findViewById(R.id.shape_selected);
-		// textMonoSelected = (TextView) findViewById(R.id.mono_selected);
-
-		// ����ѡ������ArrayAdapter��������
+		
 		backadapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_item, backgroundstr);
 		shapeadapter = new ArrayAdapter<String>(this,
@@ -78,6 +85,15 @@ public class Balloon extends Activity {
 				android.R.layout.simple_spinner_item, monostr);
 
 		// ���������б�ķ��
+		
+		
+		/*SpinnerAdapter backadapter = new SpinnerAdapter(this,  
+	             backgroundstr);  
+		SpinnerAdapter shapeadapter = new SpinnerAdapter(this,  
+	           shapestr); 
+		SpinnerAdapter monoadapter = new SpinnerAdapter(this,  
+	            monostr); 
+		*/
 		backadapter.setDropDownViewResource(R.layout.myspinner_dropdown);
 		shapeadapter.setDropDownViewResource(R.layout.myspinner_dropdown);
 		monoadapter.setDropDownViewResource(R.layout.myspinner_dropdown);
@@ -88,12 +104,19 @@ public class Balloon extends Activity {
 		monoSpinner.setAdapter(monoadapter);
 
 		// ����¼�Spinner�¼�����
+		backSpinner.setBackgroundColor(Color.RED);
 		backSpinner
 				.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
 					@Override
 					public void onItemSelected(AdapterView<?> arg0, View arg1,
 							int arg2, long arg3) {
-						RelativeLayout layout = (RelativeLayout) findViewById(R.id.RelativeLayout);
+						//for(int i=0; i<4; i++){
+							
+						
+							((TextView) arg0.getChildAt(0)).setTextColor(Color.YELLOW);
+						    ((TextView) arg0.getChildAt(0)).setTextSize(20);
+						//}
+						LinearLayout layout = (LinearLayout) findViewById(R.id.LinearLayout1);
 						// textColorSelected.setText("��ѡ�����ɫ�ǣ�" +
 						// background[arg2]);
 						arg0.setVisibility(View.VISIBLE);
@@ -129,15 +152,26 @@ public class Balloon extends Activity {
 					}
 
 				});
-
+		shapeSpinner.setBackgroundColor(Color.BLUE);
 		shapeSpinner
 				.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
 					@Override
 					public void onItemSelected(AdapterView<?> arg0, View arg1,
 							int arg2, long arg3) {
-
+						((TextView) arg0.getChildAt(0)).setTextColor(Color.YELLOW);
+					    ((TextView) arg0.getChildAt(0)).setTextSize(20);
 						arg0.setVisibility(View.VISIBLE);
 						shapeselect = shapeSpinner.getSelectedItem().toString();
+						if(shapeselect.equals("普通")){
+							balloonImage.setImageResource(R.drawable.yellow20);
+						}
+						if(shapeselect.equals("热气球")){
+							balloonImage.setImageResource(R.drawable.hot22);
+						}
+						if(shapeselect.equals("火箭")){
+							balloonImage.setImageResource(R.drawable.roc26);
+						}
+						
 
 					}
 
@@ -147,7 +181,7 @@ public class Balloon extends Activity {
 					}
 
 				});
-
+		monoSpinner.setBackgroundColor(Color.GREEN);
 		monoSpinner
 				.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
 					@Override
@@ -155,19 +189,20 @@ public class Balloon extends Activity {
 							int arg2, long arg3) {
 						// textMonoSelected.setText("��ѡ��Ĳ����ǣ�" +
 						// monostr[arg2]);
+						((TextView) arg0.getChildAt(0)).setTextColor(Color.YELLOW);
+					    ((TextView) arg0.getChildAt(0)).setTextSize(20);
 						arg0.setVisibility(View.VISIBLE);
 
 						monoselect = monoSpinner.getSelectedItem().toString();
 						mode = monoselect;
 						Log.v("shapeselect:", shapeselect);
-						if (shapeselect.equals("火箭")) {
+						/*if (shapeselect.equals("火箭")) {
 							arg0.setVisibility(View.INVISIBLE);
-							monoadapter = new ArrayAdapter<String>(Balloon.this,
-									android.R.layout.simple_spinner_item,rocket);
+							
 						} else if (shapeselect.equals("热气球")) {
 							arg0.setVisibility(View.INVISIBLE);
 						} else
-							arg0.setVisibility(View.VISIBLE);
+							arg0.setVisibility(View.VISIBLE);*/
 					}
 
 					@Override
@@ -236,11 +271,6 @@ public class Balloon extends Activity {
 			}
 		});
 
-		/*
-		 * String colorBeSelected = colorSpinner.getSelectedItem().toString();
-		 * String shapeBeSelected = colorSpinner.getSelectedItem().toString();
-		 * String monoBeSelected = colorSpinner.getSelectedItem().toString();
-		 */
 
 		// commit.setImageDrawable(getResources().getDrawable(R.drawable.start));
 		commit.setOnClickListener(new View.OnClickListener() {
@@ -267,21 +297,16 @@ public class Balloon extends Activity {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
 				intent.setClass(Balloon.this, MainScreenActivity.class);
-				startActivity(intent);
-				;
+				startActivity(intent);				
 
 				// Balloon.this.finish();
 
 			}
 		});
 
-		/*
-		 * Bundle bundle = new Bundle(); bundle.putString("colorBeSelected",
-		 * colorBeSelected); bundle.putString("shapeBeSelected",
-		 * shapeBeSelected); bundle.putString("monoBeSelected", monoBeSelected);
-		 */
-
-		// startActivity(intent);
+		
 
 	}
+	
+	
 }

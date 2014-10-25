@@ -1,86 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/RelativeLayout"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BallonGameActivity" 
-    android:background="#AA87CEEB">
+    android:background="#AA87CEEB"
+    android:orientation="vertical"
+    tools:context=".BallonGameActivity" >
 
-    <ImageView
-        android:id="@+id/ImageBalloon"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:layout_above="@+id/cancle"
-        android:layout_alignParentLeft="true"
-        android:src="@drawable/balloonwhite"
-        android:visibility="visible" />
-    
-   <TextView
-        android:id="@+id/color_selected"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/LinearLayout3"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"        
-        android:layout_marginTop="21dp"
-        android:layout_toRightOf="@id/ImageBalloon"
-        android:text="@string/colorselected" />
-    
-    <Spinner
-        android:id="@+id/Color"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/color_selected"
-        android:layout_toRightOf="@+id/ImageBalloon" />
+        android:layout_weight="3"      
+        android:orientation="horizontal" >
+    	<LinearLayout
+	        android:id="@+id/LinearLayout3"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="2"
+	        android:orientation="vertical" >
 
-    <TextView
-         android:id="@+id/shape_selected"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_below="@+id/Color"
-         android:layout_toRightOf="@+id/ImageBalloon"
-         android:text="@string/shapeselected" />
-    
-    <Spinner
-        android:id="@+id/Shape"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"        
-        android:layout_alignLeft="@id/Color"
-        android:layout_below="@id/shape_selected" />
-    
-    <TextView
-        android:id="@+id/mono_selected"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/shape_selected"
-        android:layout_below="@id/Shape"
-        android:text="@string/monoselected" /> 
+	    <ImageView
+	        android:id="@+id/ImageBalloon"
+	        android:layout_width="match_parent"
+	        android:layout_height="310dp"
+	        android:src="@drawable/yellow20"
+	        android:visibility="visible" />
 
-    <Spinner
-        android:id="@+id/Mono"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/Color"
-        android:layout_below="@id/mono_selected" />
+	  </LinearLayout>
 
-     <Button
-         android:id="@+id/cancle"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_alignParentBottom="true"
-         android:layout_alignRight="@+id/ImageBalloon"        
-         android:layout_marginBottom="14dp"
-         android:layout_marginRight="14dp"
+    <LinearLayout
+        android:id="@+id/LinearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:layout_marginTop="40sp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/color_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"  
+            android:textSize="20sp"   
+             android:layout_weight="13"    
+            android:text="@string/colorselected" />
+
+        <Spinner
+            android:id="@+id/Color"
+            android:layout_width="fill_parent"
+            android:layout_weight="12"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/shape_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp" 
+            android:layout_weight="13" 
+            android:text="@string/shapeselected" />
+
+        <Spinner
+            android:id="@+id/Shape"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="12" />
+
+        <TextView
+            android:id="@+id/mono_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp" 
+            android:layout_weight="13" 
+            android:text="@string/monoselected" />
+
+        <Spinner
+            android:id="@+id/Mono"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="12" />
+   		 </LinearLayout>
+   	</LinearLayout>
+   		 
+   
+
+    <LinearLayout
+        android:id="@+id/LinearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+      <LinearLayout
+          android:id="@+id/LinearLayout5"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:orientation="horizontal" >
+
+          <Button
+              android:id="@+id/commit"
+              android:layout_width="wrap_content"
+              android:layout_height="46dp"
+              android:layout_marginLeft="30sp"
+              android:layout_marginRight="30sp"
+              android:layout_marginTop="40sp"
+              android:background="@drawable/sta"
+              android:text="开始"
+              android:textSize="30sp" />
+      </LinearLayout>
         
-         android:text="返回" />
+	 <LinearLayout
+	     android:id="@+id/LinearLayout6"
+	     android:layout_width="match_parent"
+	     android:layout_height="wrap_content"
+	     android:layout_weight="1"
+	     android:orientation="horizontal" >
 
-     <Button
-         android:id="@+id/commit"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_alignParentLeft="true"
-         android:layout_below="@+id/ImageBalloon"        
-         android:layout_marginLeft="40dp"
-        
-         android:text="开始" />
+	     <Button
+	         android:id="@+id/cancle"
+	         android:layout_width="match_parent"
+	         android:layout_height="46dp"
+	         android:layout_marginLeft="30sp"
+	         android:layout_marginRight="30sp"
+	         android:layout_marginTop="40sp"
+	         android:background="@drawable/sta"
+	         android:text="返回"
+	         android:textSize="30sp" />
 
-</RelativeLayout>
+	 </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
