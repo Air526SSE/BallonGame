@@ -29,16 +29,25 @@
         <activity
             android:name=".MainScreenActivity"
             android:label="@string/title_activity_main_screen" >
-        </activity>       
-         <service android:name="com.tu.MusicServer" android:enabled="true">
+        </activity>
+
+        <service
+            android:name="com.tu.MusicServer"
+            android:enabled="true" >
             <intent-filter>
                 <action android:name="com.angel.Android.MUSIC" />
+
                 <category android:name="android.intent.category.default" />
             </intent-filter>
         </service>
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main" >
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.VIBRATE" /> 
+    <uses-permission android:name="android.permission.VIBRATE" />
 
 </manifest>
