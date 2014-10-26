@@ -25,7 +25,7 @@ public class Entry extends Activity implements OnGestureListener, android.view.G
 		setContentView(R.layout.activity_entry);
 		
 		
-		startService(new Intent(Entry.this, MusicServer.class));
+		
 		
 		detector = new GestureDetector(this,this);
 	}
@@ -136,11 +136,5 @@ public class Entry extends Activity implements OnGestureListener, android.view.G
 
 	        return false;
 	}
-	@Override
-	 protected void onStop() {
-	  // TODO Auto-generated method stub
-	  Intent intent = new Intent(Entry.this,MusicServer.class);
-	  stopService(intent);
-	  super.onStop();
-	 }
+	
 }

@@ -51,7 +51,9 @@ public class MusicServer extends Service{
             } 
         }); 
  
-        super.onStart(intent, startId); 
+   //     super.onStartCommand(intent, START_REDELIVER_INTENT, startId);
+        super.onStart(intent, startId);
+        mp.setLooping(true); 
     } 
  
     @Override 
