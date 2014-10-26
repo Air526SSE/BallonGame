@@ -22,7 +22,7 @@ public class MainScreenActivity extends Activity {
 		setContentView(R.layout.main_screen);
 		
 		
-		startService(new Intent(MainScreenActivity.this, MusicServer.class));
+	//	startService(new Intent(MainScreenActivity.this, MusicServer.class));
 	
 		start = (Button)findViewById(R.id.button3);
 		cancle = (Button)findViewById(R.id.button2);

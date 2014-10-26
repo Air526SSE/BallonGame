@@ -50,7 +50,6 @@ public class sqlEngThread extends Thread {
 				msg.arg1 = sqlValue;
 				handle.sendMessage(msg);
 				
-
 				
 			} catch (Exception e) {
 				e.printStackTrace();

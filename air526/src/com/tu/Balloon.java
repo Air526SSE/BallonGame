@@ -26,16 +26,18 @@ import android.widget.TextView;
 import com.su.BallonGameActivity;
 import com.su.MainScreenActivity;
 import com.su.R;
-import com.tu.SpinnerAdapter;
+
 
 public class Balloon extends Activity {
-	private static final String[] backgroundstr = { "草场", "蓝天", "树叶", "海洋" };
-	private static final String[] shapestr = { "普通", "热气球", "火箭" };
-	private static final String[] monostr = { "正计时", "倒计时", "火箭模式" };
-	private static final String[] rocket = { "火箭模式" };
+	private static final String[] backgroundstr = { "蓝天","草场","树叶", "海洋" };
+	private static final String[] shapestr = { "笑脸", "热气球"};
+	private static final String[] monostr = { "正计时", "倒计时", "热气球模式" };
+	private static final String[] rocket = { "热气球模式" };
 
-	private static String back = new String();
+	private static int back = 0;
 	private static String mode = new String();
+	private static String shape = new String();
+	
 	private String backBeSelected;
 	private String shapeselect;
 	private String monoselect;
@@ -124,25 +126,31 @@ public class Balloon extends Activity {
 								.toString();
 						// ImageView imageBalloon = (ImageView)
 						// findViewById(R.id.ImageBalloon);
-						if (backBeSelected.equals("草场")) {
-							// imageBalloon.setBackgroundColor(Color.parseColor("#FF0000"));
-
-							layout.setBackgroundResource(R.drawable.lawn);
-						}
 						if (backBeSelected.equals("蓝天")) {
 							// imageBalloon.setBackgroundColor(Color.parseColor("#FFFF37"));
 
 							layout.setBackgroundResource(R.drawable.skyball);
+							back = 0;
 						}
+						
+						if (backBeSelected.equals("草场")) {
+							// imageBalloon.setBackgroundColor(Color.parseColor("#FF0000"));
+
+							layout.setBackgroundResource(R.drawable.lawn);
+							back = 1;
+						}
+						
 						if (backBeSelected.equals("树叶")) {
 							// imageBalloon.setBackgroundColor(Color.parseColor("#00DB00"));
 
 							layout.setBackgroundResource(R.drawable.leaf);
+							back = 2;
 						}
 						if (backBeSelected.equals("海洋")) {
 							// imageBalloon.setBackgroundColor(Color.parseColor("#0000E3"));
 
 							layout.setBackgroundResource(R.drawable.umi);
+							back = 3;
 						}
 					}
 
@@ -162,15 +170,18 @@ public class Balloon extends Activity {
 					    ((TextView) arg0.getChildAt(0)).setTextSize(20);
 						arg0.setVisibility(View.VISIBLE);
 						shapeselect = shapeSpinner.getSelectedItem().toString();
-						if(shapeselect.equals("普通")){
+						if(shapeselect.equals("笑脸")){
 							balloonImage.setImageResource(R.drawable.yellow20);
+							shape = shapeselect;
 						}
 						if(shapeselect.equals("热气球")){
 							balloonImage.setImageResource(R.drawable.hot22);
+							shape = shapeselect;
 						}
-						if(shapeselect.equals("火箭")){
+						/*if(shapeselect.equals("火箭")){
 							balloonImage.setImageResource(R.drawable.roc26);
-						}
+							shape = shapeselect;
+						}*/
 						
 
 					}
@@ -281,9 +292,10 @@ public class Balloon extends Activity {
 
 				Intent intent = new Intent();
 				intent.setClass(Balloon.this, BallonGameActivity.class);
-
+				
 				intent.putExtra("back", back);
 				intent.putExtra("mode", mode);
+				intent.putExtra("shape", shape);
 
 				startActivityForResult(intent, 1);
 

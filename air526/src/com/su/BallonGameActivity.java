@@ -6,6 +6,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -76,8 +77,8 @@ public class BallonGameActivity extends Activity {
 	 * R.drawable.fly63, };
 	 */
 
-	private int[] bg = { R.drawable.game2_bg, R.drawable.game4_bg,
-			R.drawable.game5_bg, R.drawable.game6_bg };
+	private int[] bg = { R.drawable.skyball, R.drawable.lawn,
+			R.drawable.leaf, R.drawable.umi };
 
 	private sqlEngThread sqlEngine;
 
@@ -93,6 +94,7 @@ public class BallonGameActivity extends Activity {
 
 	private String shape = new String();
 	private String amode = new String();
+	private int back =0;
 
 	private TextView txtView;
 	private TextView showend;
@@ -106,7 +108,7 @@ public class BallonGameActivity extends Activity {
 		setContentView(R.layout.main);
 		imgshow = (ImageView) findViewById(R.id.imgshow);
 		xunhuan = (ImageView) findViewById(R.id.xunhuan);
-		// flyimage = (ImageView) findViewById(R.id.fly);
+		
 
 		btnRestart = (Button) findViewById(R.id.btnRestart);
 		btnBack = (Button) findViewById(R.id.btnBack);
@@ -115,13 +117,13 @@ public class BallonGameActivity extends Activity {
 		showend = (TextView) findViewById(R.id.show_end);
 
 		main = (LinearLayout) findViewById(R.id.Lmain);
-
+		main.setBackgroundResource(R.drawable.skyball);
 		
 		// flyimage.setVisibility(View.INVISIBLE);
-
 		
-		Intent intent = getIntent();
-
+		//initYellowGame();
+		
+		Intent intent = getIntent();		
 		Select(intent);
 		
 		/*if(mefly=true)
@@ -143,19 +145,7 @@ public class BallonGameActivity extends Activity {
 			}
 		});
 
-		btnRestart.setOnClickListener(new View.OnClickListener() {// 重新选择按钮监听
-					@Override
-					// 将这个监听放在每个启动函数中，可以使重新开始变成每一个函数
-					public void onClick(View v) {
-
-						initYellowGame();
-						// initRocGame();
-						flynu = 0;
-						// initFlyGame();
-						// flyRoc();
-
-					}
-				});
+		
 
 		xunhuan.setOnClickListener(new View.OnClickListener() {
 
@@ -163,7 +153,7 @@ public class BallonGameActivity extends Activity {
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 
-				bgn = (int) (Math.random() * 3);
+				bgn = (int) (Math.random() * 4);
 				main.setBackgroundResource(bg[bgn]);
 			}
 		});
@@ -171,6 +161,27 @@ public class BallonGameActivity extends Activity {
 	}
 
 	private void Select(Intent intent) {// 根据intent传来的值选择相应的方法
+		
+		if (intent.getIntExtra("back",0) != 4) {			
+			back = intent.getIntExtra("back",0);
+			switch(back)
+			{
+			case 0 :
+				main.setBackgroundResource(R.drawable.skyball);
+			break;
+			case 1 :
+				main.setBackgroundResource(R.drawable.lawn);
+			break;
+			case 2 :
+				main.setBackgroundResource(R.drawable.leaf);
+			break;
+			case 3 :
+				main.setBackgroundResource(R.drawable.umi);
+			break;
+			
+			}
+		}
+		
 		if (intent.getStringExtra("shape") != null) {
 			shape = intent.getStringExtra("shape");
 		}
@@ -181,9 +192,31 @@ public class BallonGameActivity extends Activity {
 
 		if (amode.equals("正计时")) {
 
+			initYellowGame();
+			// initRocGame();
+			 //initFlyGame();
+			// flyRoc();
+			btnRestart.setOnClickListener(new View.OnClickListener() {// 重新选择按钮监听
+				@Override
+				// 将这个监听放在每个启动函数中，可以使重新开始变成每一个函数
+				public void onClick(View v) {
+
+					initYellowGame();
+					// initRocGame();
+					//flynu = 0;
+					// initFlyGame();
+					// flyRoc();
+
+				}
+			});
+		}
+		
+		if (amode.equals("热气球模式")) {
+
+			initHotGame();
 			//initYellowGame();
 			// initRocGame();
-			 initFlyGame();
+			 //initFlyGame();
 			// flyRoc();
 		}
 
@@ -201,14 +234,7 @@ public class BallonGameActivity extends Activity {
 		if (amode.equals("倒计时")) {
 
 			initGame1();
-			btnRestart.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-
-					initGame1();
-				}
-			});
+			
 		}
 	}
 
@@ -268,17 +294,24 @@ public class BallonGameActivity extends Activity {
 		sqlEngine = new sqlEngThread(new BallonHandlerHot());
 		sqlEngine.startThead();
 		ti.start();
+		
+		btnRestart.setOnClickListener(new View.OnClickListener() {// 重新选择按钮监听
+			@Override
+			// 将这个监听放在每个启动函数中，可以使重新开始变成每一个函数
+			public void onClick(View v) {
+
+				initHotGame();
+				//initYellowGame();
+				// initRocGame();
+				//flynu = 0;
+				// initFlyGame();
+				// flyRoc();
+
+			}
+		});
 	}
 
-	/*
-	 * private void flyRoc() {
-	 * 
-	 * fi = new Thread(new FlyThread());
-	 * 
-	 * //fi.wait();
-	 * 
-	 * }
-	 */
+	
 
 	private void initYellowGame() {// 正吹笑脸
 		// TODO Auto-generated method stub
@@ -296,7 +329,10 @@ public class BallonGameActivity extends Activity {
 
 		sqlEngine = new sqlEngThread(new BallonHandlerYellow());
 		sqlEngine.startThead();
+		Log.v("sqlthread:", "start");
 		ti.start();
+		
+		
 	}
 
 	private void initGame1() {// 倒吹笑脸
@@ -315,6 +351,15 @@ public class BallonGameActivity extends Activity {
 		sqlEngine = new sqlEngThread(new YellowWhileHandler());
 		sqlEngine.startThead();
 		ti.start();
+		
+		btnRestart.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+				initGame1();
+			}
+		});
 
 	}
 
@@ -325,7 +370,7 @@ public class BallonGameActivity extends Activity {
 				int d = msg.arg1;
 				if (d >= 180) {
 					count++;
-					if (count >= 7) {
+					if (count >= 5) {
 						level = level + 1;
 						if (level <= 22) {
 							imgshow.setBackgroundResource(yellow[level]);
@@ -372,8 +417,8 @@ public class BallonGameActivity extends Activity {
 							imgshow.setBackgroundResource(yellow[level]);
 							if (level == 22) {
 
-								VibratorUtil.Vibrate(BallonGameActivity.this,
-										100);
+								/*VibratorUtil.Vibrate(BallonGameActivity.this,
+										100);*/
 
 								sqlEngine.stopThead();
 								btnRestart.setVisibility(View.VISIBLE);
