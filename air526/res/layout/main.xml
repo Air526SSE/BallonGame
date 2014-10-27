@@ -21,13 +21,14 @@
         android:layout_alignParentTop="true"
         />
 
-    <ImageView
-        android:id="@+id/xunhuan"
+    <TextView
+        android:id="@+id/score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/xunhuan" />
+        android:textColor="#AAFFA500"
+        android:text="@string/BestScore" />
 
     </RelativeLayout>
  

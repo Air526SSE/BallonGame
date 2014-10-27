@@ -1,13 +1,21 @@
 package com.su;
 
+import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,8 +24,15 @@ import android.widget.TextView;
 import com.tu.Balloon;
 
 public class BallonGameActivity extends Activity {
+	
+	SoundPool soundPool;
+	HashMap<Integer,Integer> soundMap = new HashMap<Integer,Integer>();
+	
+	SharedPreferences preferences;
+	SharedPreferences.Editor editor;
+	
 	private ImageView imgshow;
-	private ImageView xunhuan;
+	private TextView score;
 
 	private Button btnRestart;
 	private Button btnBack;
@@ -26,7 +41,9 @@ public class BallonGameActivity extends Activity {
 	AnimationDrawable anim;
 
 	private int level = 0, count = 0;
-	private int bgn = 0;
+	//private int bgn = 0;
+	private int min=0;
+	private int s=0;
 
 	private int[] yellow = { R.drawable.yellow0, R.drawable.yellow1,
 			R.drawable.yellow2, R.drawable.yellow3, R.drawable.yellow4,
@@ -54,8 +71,7 @@ public class BallonGameActivity extends Activity {
 			R.drawable.roc16, R.drawable.roc17, R.drawable.roc18,
 			R.drawable.roc19, R.drawable.roc20, R.drawable.roc21,
 			R.drawable.roc22, R.drawable.roc23, R.drawable.roc24,
-			R.drawable.roc25, R.drawable.roc26, R.drawable.roc27,
-			R.drawable.roc28 };
+			R.drawable.roc25, R.drawable.roc26 };
 
 	/*
 	 * private int[] fly = { R.drawable.fly0, R.drawable.fly1, R.drawable.fly2,
@@ -77,8 +93,8 @@ public class BallonGameActivity extends Activity {
 	 * R.drawable.fly63, };
 	 */
 
-	private int[] bg = { R.drawable.skyball, R.drawable.lawn,
-			R.drawable.leaf, R.drawable.umi };
+	/*private int[] bg = { R.drawable.skyball, R.drawable.lawn, R.drawable.leaf,
+			R.drawable.umi };*/
 
 	private sqlEngThread sqlEngine;
 
@@ -89,26 +105,39 @@ public class BallonGameActivity extends Activity {
 	private int flynu = 0;
 
 	public int ballsum = 0;
-	
-	private static boolean mefly=false;
+
+	private static boolean mefly = false;
 
 	private String shape = new String();
 	private String amode = new String();
-	private int back =0;
+	private int back = 0;
 
 	private TextView txtView;
 	private TextView showend;
 	private Thread ti;
 	private Thread fi;
 
+	private float initY;
+	private float curX;
+	private float curY;
+	float nextX;
+	float nextY;
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		imgshow = (ImageView) findViewById(R.id.imgshow);
-		xunhuan = (ImageView) findViewById(R.id.xunhuan);
+
+		soundPool = new SoundPool(4,AudioManager.STREAM_SYSTEM,5);
+		soundMap.put(1, soundPool.load(this,R.raw.smile,1));
+		soundMap.put(2, soundPool.load(this,R.raw.wsmile,1));
+		soundMap.put(3, soundPool.load(this,R.raw.hot,1));
+		soundMap.put(4, soundPool.load(this,R.raw.rocf,1));
 		
+		
+		imgshow = (ImageView) findViewById(R.id.imgshow);
+		score = (TextView) findViewById(R.id.score);
 
 		btnRestart = (Button) findViewById(R.id.btnRestart);
 		btnBack = (Button) findViewById(R.id.btnBack);
@@ -119,19 +148,23 @@ public class BallonGameActivity extends Activity {
 		main = (LinearLayout) findViewById(R.id.Lmain);
 		main.setBackgroundResource(R.drawable.skyball);
 		
+		preferences = getSharedPreferences("SCORE", MODE_WORLD_READABLE);
+		editor = preferences.edit();
+
 		// flyimage.setVisibility(View.INVISIBLE);
-		
+
 		//initYellowGame();
+		initFlyGame();
+		//initGame1();
+		//initHotGame();
 		
-		Intent intent = getIntent();		
+		Intent intent = getIntent();
 		Select(intent);
-		
-		/*if(mefly=true)
-		{
-			imgshow.setBackgroundResource(R.anim.fly);
-			anim = (AnimationDrawable) imgshow.getBackground();
-			anim.start();
-		}*/
+
+		/*
+		 * if(mefly=true) { imgshow.setBackgroundResource(R.anim.fly); anim =
+		 * (AnimationDrawable) imgshow.getBackground(); anim.start(); }
+		 */
 
 		btnBack.setOnClickListener(new View.OnClickListener() {
 
@@ -145,9 +178,7 @@ public class BallonGameActivity extends Activity {
 			}
 		});
 
-		
-
-		xunhuan.setOnClickListener(new View.OnClickListener() {
+		/*xunhuan.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
@@ -156,32 +187,31 @@ public class BallonGameActivity extends Activity {
 				bgn = (int) (Math.random() * 4);
 				main.setBackgroundResource(bg[bgn]);
 			}
-		});
+		});*/
 
 	}
 
 	private void Select(Intent intent) {// 根据intent传来的值选择相应的方法
-		
-		if (intent.getIntExtra("back",0) != 4) {			
-			back = intent.getIntExtra("back",0);
-			switch(back)
-			{
-			case 0 :
+
+		if (intent.getIntExtra("back", 0) != 4) {
+			back = intent.getIntExtra("back", 0);
+			switch (back) {
+			case 0:
 				main.setBackgroundResource(R.drawable.skyball);
-			break;
-			case 1 :
+				break;
+			case 1:
 				main.setBackgroundResource(R.drawable.lawn);
-			break;
-			case 2 :
+				break;
+			case 2:
 				main.setBackgroundResource(R.drawable.leaf);
-			break;
-			case 3 :
+				break;
+			case 3:
 				main.setBackgroundResource(R.drawable.umi);
-			break;
-			
+				break;
+
 			}
 		}
-		
+
 		if (intent.getStringExtra("shape") != null) {
 			shape = intent.getStringExtra("shape");
 		}
@@ -194,29 +224,29 @@ public class BallonGameActivity extends Activity {
 
 			initYellowGame();
 			// initRocGame();
-			 //initFlyGame();
+			// initFlyGame();
 			// flyRoc();
 			btnRestart.setOnClickListener(new View.OnClickListener() {// 重新选择按钮监听
-				@Override
-				// 将这个监听放在每个启动函数中，可以使重新开始变成每一个函数
-				public void onClick(View v) {
+						@Override
+						// 将这个监听放在每个启动函数中，可以使重新开始变成每一个函数
+						public void onClick(View v) {
 
-					initYellowGame();
-					// initRocGame();
-					//flynu = 0;
-					// initFlyGame();
-					// flyRoc();
+							initYellowGame();
+							// initRocGame();
+							// flynu = 0;
+							// initFlyGame();
+							// flyRoc();
 
-				}
-			});
+						}
+					});
 		}
-		
+
 		if (amode.equals("热气球模式")) {
 
 			initHotGame();
-			//initYellowGame();
+			// initYellowGame();
 			// initRocGame();
-			 //initFlyGame();
+			// initFlyGame();
 			// flyRoc();
 		}
 
@@ -234,7 +264,7 @@ public class BallonGameActivity extends Activity {
 		if (amode.equals("倒计时")) {
 
 			initGame1();
-			
+
 		}
 	}
 
@@ -260,20 +290,20 @@ public class BallonGameActivity extends Activity {
 
 	private void initFlyGame() {// 火箭飞
 		// TODO Auto-generated method stub
-		
-		  level = 0; recLen = 0; se = 0;
-		  
-		  imgshow.setBackgroundResource(roc[0]);
-		  btnRestart.setVisibility(View.INVISIBLE);
-		  btnBack.setVisibility(View.INVISIBLE);
-		  showend.setVisibility(View.INVISIBLE);
-		  txtView.setVisibility(View.VISIBLE);
-		  
-		  
-		  sqlEngine = new sqlEngThread(new BallonHandlerFly());
-		  sqlEngine.startThead();
-		 
-		
+
+		level = 0;
+		recLen = 0;
+		se = 0;
+
+		imgshow.setBackgroundResource(roc[0]);
+		btnRestart.setVisibility(View.INVISIBLE);
+		btnBack.setVisibility(View.INVISIBLE);
+		showend.setVisibility(View.INVISIBLE);
+		txtView.setVisibility(View.INVISIBLE);
+		score.setVisibility(View.INVISIBLE);
+
+		sqlEngine = new sqlEngThread(new BallonHandlerFly());
+		sqlEngine.startThead();
 
 	}
 
@@ -283,6 +313,16 @@ public class BallonGameActivity extends Activity {
 		recLen = 0;
 		se = 0;
 
+		if(preferences.contains("hmin"))
+		{
+		min=preferences.getInt("hmin", 0);
+		}
+		if(preferences.contains("hs"))
+		{
+			s=preferences.getInt("hs", 0);
+		}				
+		score.setText("最好记录： "+min+":"+s+"秒");
+		
 		imgshow.setBackgroundResource(hot[0]);
 		btnRestart.setVisibility(View.INVISIBLE);
 		btnBack.setVisibility(View.INVISIBLE);
@@ -294,24 +334,22 @@ public class BallonGameActivity extends Activity {
 		sqlEngine = new sqlEngThread(new BallonHandlerHot());
 		sqlEngine.startThead();
 		ti.start();
-		
+
 		btnRestart.setOnClickListener(new View.OnClickListener() {// 重新选择按钮监听
-			@Override
-			// 将这个监听放在每个启动函数中，可以使重新开始变成每一个函数
-			public void onClick(View v) {
+					@Override
+					// 将这个监听放在每个启动函数中，可以使重新开始变成每一个函数
+					public void onClick(View v) {
 
-				initHotGame();
-				//initYellowGame();
-				// initRocGame();
-				//flynu = 0;
-				// initFlyGame();
-				// flyRoc();
+						initHotGame();
+						// initYellowGame();
+						// initRocGame();
+						// flynu = 0;
+						// initFlyGame();
+						// flyRoc();
 
-			}
-		});
+					}
+				});
 	}
-
-	
 
 	private void initYellowGame() {// 正吹笑脸
 		// TODO Auto-generated method stub
@@ -319,6 +357,16 @@ public class BallonGameActivity extends Activity {
 		recLen = 0;
 		se = 0;
 
+		if(preferences.contains("smin"))
+		{
+		min=preferences.getInt("smin", 0);
+		}
+		if(preferences.contains("ss"))
+		{
+			s=preferences.getInt("ss", 0);
+		}				
+		score.setText("最好记录： "+min+":"+s+"秒");
+		
 		imgshow.setBackgroundResource(yellow[0]);
 		btnRestart.setVisibility(View.INVISIBLE);
 		btnBack.setVisibility(View.INVISIBLE);
@@ -331,7 +379,20 @@ public class BallonGameActivity extends Activity {
 		sqlEngine.startThead();
 		Log.v("sqlthread:", "start");
 		ti.start();
-		
+
+		btnRestart.setOnClickListener(new View.OnClickListener() {// 重新选择按钮监听
+			@Override
+			// 将这个监听放在每个启动函数中，可以使重新开始变成每一个函数
+			public void onClick(View v) {
+
+				initYellowGame();
+				// initRocGame();
+				// flynu = 0;
+				// initFlyGame();
+				// flyRoc();
+
+			}
+		});
 		
 	}
 
@@ -340,18 +401,29 @@ public class BallonGameActivity extends Activity {
 		level = 0;
 		lesLen = 9;
 		seLen = 10;
-
+		
+		if(preferences.contains("snum"))
+		{
+			score.setText("最好记录： "+preferences.getInt("snum", 0)+"个");
+		}else{
+			
+			score.setText("最好记录： "+0+"个");
+		}
+						
+		
+		ballsum=0;
 		imgshow.setBackgroundResource(yellow[0]);
 		btnRestart.setVisibility(View.INVISIBLE);
 		btnBack.setVisibility(View.INVISIBLE);
 		showend.setVisibility(View.INVISIBLE);
+		txtView.setVisibility(View.VISIBLE);
 
 		ti = new Thread(new MyThread1());
 
 		sqlEngine = new sqlEngThread(new YellowWhileHandler());
 		sqlEngine.startThead();
 		ti.start();
-		
+
 		btnRestart.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -381,6 +453,20 @@ public class BallonGameActivity extends Activity {
 
 								if (seLen <= 0) {
 
+									soundPool.play(soundMap.get(2), 1, 1, 0, 0, 1);		
+									VibratorUtil.Vibrate(BallonGameActivity.this,100);
+									
+									if(!preferences.contains("snum"))
+									{
+										editor.putInt("snum", ballsum);										
+										editor.commit();
+									}
+									else if(ballsum>preferences.getInt("snum", 0))
+									{
+										editor.putInt("snum", ballsum);										
+										editor.commit();
+									}
+									
 									sqlEngine.stopThead();
 									btnRestart.setVisibility(View.VISIBLE);
 									btnBack.setVisibility(View.VISIBLE);
@@ -417,9 +503,26 @@ public class BallonGameActivity extends Activity {
 							imgshow.setBackgroundResource(yellow[level]);
 							if (level == 22) {
 
-								/*VibratorUtil.Vibrate(BallonGameActivity.this,
-										100);*/
-
+						soundPool.play(soundMap.get(1), 1, 1, 0, 0, 1);		
+						VibratorUtil.Vibrate(BallonGameActivity.this,100);
+								 
+						if(!preferences.contains("smin"))
+						{
+							editor.putInt("smin", se);
+							editor.putInt("ss", recLen);
+							editor.commit();
+						}
+						else if(se<min){
+							editor.putInt("smin", se);
+							editor.putInt("ss", recLen);
+							editor.commit();
+						}else if(se == min && recLen<s)
+						{
+							editor.putInt("smin", se);
+							editor.putInt("ss", recLen);
+							editor.commit();
+						}
+						
 								sqlEngine.stopThead();
 								btnRestart.setVisibility(View.VISIBLE);
 								btnBack.setVisibility(View.VISIBLE);
@@ -440,7 +543,7 @@ public class BallonGameActivity extends Activity {
 		}
 	}
 
-	class BallonHandlerRoc extends Handler {// 正吹火箭
+	class BallonHandlerRoc extends Handler {// 正吹火箭的实现
 		@Override
 		public void handleMessage(Message msg) {
 			if (msg.what == 1) {
@@ -449,9 +552,9 @@ public class BallonGameActivity extends Activity {
 					count++;
 					if (count >= 5) {
 						level++;
-						if (level <= 28) {
+						if (level <= 26) {
 							imgshow.setBackgroundResource(roc[level]);
-							if (level == 28) {
+							if (level == 26) {
 
 								sqlEngine.stopThead();
 								btnRestart.setVisibility(View.VISIBLE);
@@ -482,18 +585,61 @@ public class BallonGameActivity extends Activity {
 					count++;
 					if (count >= 5) {
 						level++;
-						if (level <= 28) {
+						if (level <= 26) {
 							imgshow.setBackgroundResource(roc[level]);
-							if (level == 28) {
+							if (level == 26) {
 
+								imgshow.setBackgroundResource(R.drawable.bfly1);
+								curX = imgshow.getX();
+								initY = curY = imgshow.getY();
+								nextX = curX;
+
+								soundPool.play(soundMap.get(4), 1, 1, 0, 0, 1);		
+								VibratorUtil.Vibrate(BallonGameActivity.this,200);
 								
-								//mefly=true;
-								imgshow.setBackgroundResource(R.anim.fat_po);
-								anim = (AnimationDrawable) imgshow.getBackground();
-								anim.start();
+								final Handler bflyhandler = new Handler() {									
+									@Override
+									public void handleMessage(Message msg) {
+										if (msg.what == 0x123) {
+											// 横向上一直向右飞
+											if (nextY < -600) {
+												curY = nextY = initY;
+											} else {
+												nextY -= 8;
+											}											
+											TranslateAnimation anim = new TranslateAnimation(
+													curX, nextX, curY, nextY);
+											curX = nextX;
+											curY = nextY;
+											anim.setDuration(40);
+											// 开始位移动画
+											imgshow.startAnimation(anim); // ①
+
+										}
+										showend.setVisibility(View.VISIBLE);
+										showend.setText("好吧好吧，火箭你都吹起来了。你这家伙太能吹了……就和火箭一起飞吧~");
+									}
+								};
+																
+								new Timer().schedule(new TimerTask()
+								{
+									@Override
+									public void run()
+									{
+										if(nextY>-599)
+										bflyhandler.sendEmptyMessage(0x123);
+									}
+
+								}, 0, 40);
+								
+								
+								// imgshow.setBackgroundResource(R.anim.fat_po);
+								// anim = (AnimationDrawable)
+								// imgshow.getBackground();
+								// anim.start();
 								sqlEngine.stopThead();
 								sqlEngine = null;
-								
+
 							}
 						}
 						count = 0;
@@ -510,12 +656,32 @@ public class BallonGameActivity extends Activity {
 				int d = msg.arg1;
 				if (d >= 180) {
 					count++;
-					if (count >= 18) {
+					if (count >= 12) {
 						level++;
 						if (level <= 22) {
 							imgshow.setBackgroundResource(hot[level]);
 							if (level == 22) {
 
+								soundPool.play(soundMap.get(3), 1, 1, 0, 0, 1);		
+								VibratorUtil.Vibrate(BallonGameActivity.this,100);
+								
+								if(!preferences.contains("hmin"))
+								{
+									editor.putInt("hmin", se);
+									editor.putInt("hs", recLen);
+									editor.commit();
+								}
+								else if(se<min){
+									editor.putInt("hmin", se);
+									editor.putInt("hs", recLen);
+									editor.commit();
+								}else if(se == min && recLen<s)
+								{
+									editor.putInt("hmin", se);
+									editor.putInt("hs", recLen);
+									editor.commit();
+								}
+								
 								sqlEngine.stopThead();
 								btnRestart.setVisibility(View.VISIBLE);
 								btnBack.setVisibility(View.VISIBLE);
@@ -615,24 +781,4 @@ public class BallonGameActivity extends Activity {
 		}
 	}
 
-	/*
-	 * final Handler flyHandler = new Handler() {//火箭飞的线程 int i =0;
-	 * 
-	 * @Override public void handleMessage(Message msg) { switch (msg.what) {
-	 * case 1:
-	 * 
-	 * while(flynu<64){ while(i>800){ imgshow.setBackgroundResource(fly[flynu]);
-	 * flynu++; i =0;} i++; } } super.handleMessage(msg); }
-	 * 
-	 * };
-	 */
-
-	/*
-	 * class FlyThread implements Runnable {
-	 * 
-	 * @Override public void run() { // TODO Auto-generated method stub while
-	 * (flynu < 64) { try { Thread.sleep(100); Message message = new Message();
-	 * message.what = 1; flyHandler.sendMessage(message); } catch (Exception e)
-	 * { } } } }
-	 */
 }

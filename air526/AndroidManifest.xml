@@ -13,14 +13,14 @@
         android:icon="@drawable/fengmian"
         android:label="吹吧"
         android:theme="@style/AppTheme" >
-        <activity android:name=".Entry" >
+        <activity android:name=".BallonGameActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BallonGameActivity" >
+        <activity android:name=".Entry" >
         </activity>
         <activity
             android:name="com.tu.Balloon"

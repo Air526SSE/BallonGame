@@ -28,8 +28,7 @@ public class MainScreenActivity extends Activity {
 		cancle = (Button)findViewById(R.id.button2);
 		about = (Button)findViewById(R.id.button1);
 		
-		start.setOnClickListener(new View.OnClickListener() {
-			
+		start.setOnClickListener(new View.OnClickListener() {			
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
@@ -46,7 +45,8 @@ public class MainScreenActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				MainScreenActivity.this.finish();
+				//System.exit(0);
+				android.os.Process.killProcess(android.os.Process.myPid()); 
 			}
 		});
 		
