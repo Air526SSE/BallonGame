@@ -154,7 +154,7 @@ public class BallonGameActivity extends Activity {
 		// flyimage.setVisibility(View.INVISIBLE);
 
 		//initYellowGame();
-		initFlyGame();
+		//initFlyGame();
 		//initGame1();
 		//initHotGame();
 		
@@ -175,6 +175,7 @@ public class BallonGameActivity extends Activity {
 				Intent intent = new Intent();
 				intent.setClass(BallonGameActivity.this, Balloon.class);
 				startActivity(intent);
+				finish();
 			}
 		});
 
@@ -212,7 +213,7 @@ public class BallonGameActivity extends Activity {
 			}
 		}
 
-		if (intent.getStringExtra("shape") != null) {
+		if (intent.getStringExtra("shape") != null) {//没有用到
 			shape = intent.getStringExtra("shape");
 		}
 
@@ -223,52 +224,61 @@ public class BallonGameActivity extends Activity {
 		if (amode.equals("正计时")) {
 
 			initYellowGame();
-			// initRocGame();
-			// initFlyGame();
-			// flyRoc();
+			
 			btnRestart.setOnClickListener(new View.OnClickListener() {// 重新选择按钮监听
 						@Override
 						// 将这个监听放在每个启动函数中，可以使重新开始变成每一个函数
 						public void onClick(View v) {
 
-							initYellowGame();
-							// initRocGame();
-							// flynu = 0;
-							// initFlyGame();
-							// flyRoc();
-
+							initYellowGame();							
 						}
 					});
 		}
-
-		if (amode.equals("热气球模式")) {
-
-			initHotGame();
-			// initYellowGame();
-			// initRocGame();
-			// initFlyGame();
-			// flyRoc();
-		}
-
-		if (amode.equals("正计时") && shape.equals("hot")) {
-			initHotGame();
-			btnRestart.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-
-					initHotGame();
-				}
-			});
-		}
-
+		
 		if (amode.equals("倒计时")) {
 
 			initGame1();
 
+			btnRestart.setOnClickListener(new View.OnClickListener() {// 重新选择按钮监听
+				@Override
+				// 将这个监听放在每个启动函数中，可以使重新开始变成每一个函数
+				public void onClick(View v) {
+
+					initGame1();					
+				}
+			});
 		}
+
+		if (amode.equals("热气球模式——超困难模式，有胆来战")) {
+
+			initHotGame();
+			
+			btnRestart.setOnClickListener(new View.OnClickListener() {// 重新选择按钮监听
+				@Override
+				// 将这个监听放在每个启动函数中，可以使重新开始变成每一个函数
+				public void onClick(View v) {
+
+					initHotGame();					
+				}
+			});
+		}
+		
+		if (amode.equals("火箭模式——程序员脑袋进水的杰作")) {
+
+			initFlyGame();
+			
+			btnRestart.setOnClickListener(new View.OnClickListener() {// 重新选择按钮监听
+				@Override
+				// 将这个监听放在每个启动函数中，可以使重新开始变成每一个函数
+				public void onClick(View v) {
+
+					initFlyGame();					
+				}
+			});
+		}				
 	}
 
-	private void initRocGame() {// 正吹火箭
+	private void initRocGame() {// 正吹火箭，没有在select()中设置启动
 		// TODO Auto-generated method stub
 		level = 0;
 		recLen = 0;
@@ -340,13 +350,7 @@ public class BallonGameActivity extends Activity {
 					// 将这个监听放在每个启动函数中，可以使重新开始变成每一个函数
 					public void onClick(View v) {
 
-						initHotGame();
-						// initYellowGame();
-						// initRocGame();
-						// flynu = 0;
-						// initFlyGame();
-						// flyRoc();
-
+						initHotGame();					
 					}
 				});
 	}
@@ -385,11 +389,7 @@ public class BallonGameActivity extends Activity {
 			// 将这个监听放在每个启动函数中，可以使重新开始变成每一个函数
 			public void onClick(View v) {
 
-				initYellowGame();
-				// initRocGame();
-				// flynu = 0;
-				// initFlyGame();
-				// flyRoc();
+				initYellowGame();				
 
 			}
 		});
@@ -458,13 +458,21 @@ public class BallonGameActivity extends Activity {
 									
 									if(!preferences.contains("snum"))
 									{
+										showend.setText("给力！！您吹了 " + ballsum
+												+ "个球创了新纪录！！");
 										editor.putInt("snum", ballsum);										
 										editor.commit();
 									}
 									else if(ballsum>preferences.getInt("snum", 0))
 									{
+										showend.setText("给力！！您吹了 " + ballsum
+												+ "个球创了新纪录！！");
 										editor.putInt("snum", ballsum);										
 										editor.commit();
+									}else
+									{
+										showend.setText("Yes！您吹了 " + ballsum
+												+ "个球！");
 									}
 									
 									sqlEngine.stopThead();
@@ -473,8 +481,7 @@ public class BallonGameActivity extends Activity {
 									showend.setVisibility(View.VISIBLE);
 									txtView.setVisibility(View.INVISIBLE);
 
-									showend.setText("Yes！您吹了 " + ballsum
-											+ "个球！");
+									
 									imgshow.setBackgroundResource(yellow[level]);
 									sqlEngine = null;
 									ti = null;
@@ -508,19 +515,30 @@ public class BallonGameActivity extends Activity {
 								 
 						if(!preferences.contains("smin"))
 						{
+							showend.setText("Wow! 您用" + se + "." + recLen
+									+ "秒创了新纪录！！");
 							editor.putInt("smin", se);
 							editor.putInt("ss", recLen);
 							editor.commit();
 						}
 						else if(se<min){
+							showend.setText("Wow! 您用" + se + "." + recLen
+									+ "秒创了新纪录！！");
 							editor.putInt("smin", se);
 							editor.putInt("ss", recLen);
 							editor.commit();
 						}else if(se == min && recLen<s)
 						{
+							showend.setText("Wow! 您用" + se + "." + recLen
+									+ "秒创了新纪录！！");
 							editor.putInt("smin", se);
 							editor.putInt("ss", recLen);
 							editor.commit();
+						}
+						else
+						{
+							showend.setText("Wow! 您用了" + se + "." + recLen
+									+ "秒！");
 						}
 						
 								sqlEngine.stopThead();
@@ -528,9 +546,7 @@ public class BallonGameActivity extends Activity {
 								btnBack.setVisibility(View.VISIBLE);
 								showend.setVisibility(View.VISIBLE);
 								txtView.setVisibility(View.INVISIBLE);
-
-								showend.setText("Wow! 您用了" + se + "." + recLen
-										+ "秒！");
+								
 								sqlEngine = null;
 								ti = null;
 
@@ -617,7 +633,7 @@ public class BallonGameActivity extends Activity {
 
 										}
 										showend.setVisibility(View.VISIBLE);
-										showend.setText("好吧好吧，火箭你都吹起来了。你这家伙太能吹了……就和火箭一起飞吧~");
+										showend.setText("好吧好吧，火箭你都吹起来了。你太能吹了……不会是吹牛练出来的吧？:)");
 									}
 								};
 																
@@ -666,20 +682,29 @@ public class BallonGameActivity extends Activity {
 								VibratorUtil.Vibrate(BallonGameActivity.this,100);
 								
 								if(!preferences.contains("hmin"))
-								{
+								{showend.setText("吹神降临！！ 您用了"
+										+ se + "." + recLen + "秒创了新纪录！！");
 									editor.putInt("hmin", se);
 									editor.putInt("hs", recLen);
 									editor.commit();
 								}
 								else if(se<min){
+									showend.setText("吹神降临！！ 您用了"
+											+ se + "." + recLen + "秒创了新纪录！！");
 									editor.putInt("hmin", se);
 									editor.putInt("hs", recLen);
 									editor.commit();
 								}else if(se == min && recLen<s)
 								{
+									showend.setText("吹神降临！！ 您用了"
+											+ se + "." + recLen + "秒创了新纪录！！");
 									editor.putInt("hmin", se);
 									editor.putInt("hs", recLen);
 									editor.commit();
+								}else
+								{
+									showend.setText("    我滴神呐!!\n你竟然吹起了一个热气球！ 只用了"
+											+ se + "." + recLen + "秒！");
 								}
 								
 								sqlEngine.stopThead();
@@ -688,8 +713,7 @@ public class BallonGameActivity extends Activity {
 								showend.setVisibility(View.VISIBLE);
 								txtView.setVisibility(View.INVISIBLE);
 
-								showend.setText("    我滴神呐!!\n你竟然吹起了一个热气球！ 只用了"
-										+ se + "." + recLen + "秒！");
+							
 								sqlEngine = null;
 								ti = null;
 

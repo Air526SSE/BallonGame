@@ -66,10 +66,15 @@ public class sqlEngThread extends Thread {
 		try {
 			this.bRunning = false;
 			stop();
-			if (this.recordInstance != null) {
+			/*if (this.recordInstance != null) {
 				this.recordInstance.stop();
 				this.recordInstance.release();
 				this.recordInstance = null;
+			}*/
+			if (recordInstance != null) {
+				recordInstance.stop();
+				recordInstance.release();
+				recordInstance = null;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

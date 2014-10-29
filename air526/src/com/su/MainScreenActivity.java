@@ -1,15 +1,15 @@
 package com.su;
 
-import com.tu.Balloon;
-import com.tu.MusicServer;
-
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
+import com.tu.Balloon;
 
 public class MainScreenActivity extends Activity {
 
@@ -45,8 +45,26 @@ public class MainScreenActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				//System.exit(0);
+				/*finish();
+				System.exit(0);
 				android.os.Process.killProcess(android.os.Process.myPid()); 
+				ActivityManager activityMgr= (ActivityManager) getSystemService(ACTIVITY_SERVICE );  
+	            activityMgr.killBackgroundProcesses(getPackageName());*/
+	            
+	            /*int currentVersion = android.os.Build.VERSION.SDK_INT;
+	            if (currentVersion > android.os.Build.VERSION_CODES.ECLAIR_MR1) {
+	            Intent startMain = new Intent(Intent.ACTION_MAIN);
+	            startMain.addCategory(Intent.CATEGORY_HOME);
+	            startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	            startActivity(startMain);
+	            System.exit(0);
+	            } else {// android2.1
+	            ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+	            am.restartPackage(getPackageName());
+	            	System.exit(0);
+	            
+	            }*/
+				System.exit(0);
 			}
 		});
 		

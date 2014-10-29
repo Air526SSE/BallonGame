@@ -10,24 +10,21 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/fengmian"
+        android:icon="@drawable/fengmian4"
         android:label="吹吧"
         android:theme="@style/AppTheme" >
-        <activity android:name=".BallonGameActivity" >
+        <activity android:name=".MainScreenActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".Entry" >
-        </activity>
+        </activity>        
         <activity
-            android:name="com.tu.Balloon"
+            android:name=".BallonGameActivity"
             android:label="@string/title_activity_main_screen" >
         </activity>
         <activity
-            android:name=".MainScreenActivity"
+            android:name="com.tu.Balloon"
             android:label="@string/title_activity_main_screen" >
         </activity>
 
@@ -40,14 +37,11 @@
                 <category android:name="android.intent.category.default" />
             </intent-filter>
         </service>
-
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_main" >
-        </activity>
+      
     </application>
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
 
 </manifest>
