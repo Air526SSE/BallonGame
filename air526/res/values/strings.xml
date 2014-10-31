@@ -10,5 +10,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_entry">Entry</string>
     <string name="title_activity_main">MainActivity</string>
+     <string name="BestScore">最好成绩： </string>
 
 </resources>
