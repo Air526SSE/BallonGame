@@ -81,7 +81,7 @@ public class MusicServer extends Service{
         // 服务停止时停止播放音乐并释放资源  
         mp.stop(); 
         mp.release(); 
- 
+        mp=null;
         super.onDestroy(); 
     } 
  

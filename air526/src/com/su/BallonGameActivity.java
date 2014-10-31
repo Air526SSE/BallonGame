@@ -175,7 +175,8 @@ public class BallonGameActivity extends Activity {
 				Intent intent = new Intent();
 				intent.setClass(BallonGameActivity.this, Balloon.class);
 				startActivity(intent);
-				finish();
+				//finish();
+				System.exit(0);
 			}
 		});
 

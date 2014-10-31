@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.tu.Balloon;
+import com.tu.MusicServer;
 
 public class MainScreenActivity extends Activity {
 
@@ -22,7 +23,7 @@ public class MainScreenActivity extends Activity {
 		setContentView(R.layout.main_screen);
 		
 		
-	//	startService(new Intent(MainScreenActivity.this, MusicServer.class));
+		//startService(new Intent(MainScreenActivity.this, MusicServer.class));
 	
 		start = (Button)findViewById(R.id.button3);
 		cancle = (Button)findViewById(R.id.button2);

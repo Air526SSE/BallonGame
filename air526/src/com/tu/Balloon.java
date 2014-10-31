@@ -277,6 +277,8 @@ public class Balloon extends Activity {
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 
+				//stopService(new Intent(Balloon.this, MusicServer.class));
+				
 				Intent intent = new Intent();
 				intent.setClass(Balloon.this, BallonGameActivity.class);
 				
@@ -298,8 +300,8 @@ public class Balloon extends Activity {
 				Intent intent = new Intent();
 				intent.setClass(Balloon.this, MainScreenActivity.class);
 				startActivity(intent);	
-				finish();
-
+				//finish();
+				System.exit(0);
 			}
 		});
 
