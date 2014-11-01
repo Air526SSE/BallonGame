@@ -1,0 +1,90 @@
+﻿Merge remote-tracking branch 'origin/master'
+
+Conflicts:
+	air526/bin/BallonGame.apk
+	air526/bin/classes.dex
+	air526/bin/resources.ap_
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 1 and 3 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	deleted:    air526/bin/BallonGame.apk
+#	deleted:    air526/bin/classes.dex
+#	new file:   air526/bin/classes/com/su/BallonGameActivity$1.class
+#	new file:   air526/bin/classes/com/su/BallonGameActivity$10.class
+#	new file:   air526/bin/classes/com/su/BallonGameActivity$2.class
+#	new file:   air526/bin/classes/com/su/BallonGameActivity$3.class
+#	new file:   air526/bin/classes/com/su/BallonGameActivity$4.class
+#	new file:   air526/bin/classes/com/su/BallonGameActivity$5.class
+#	new file:   air526/bin/classes/com/su/BallonGameActivity$6.class
+#	new file:   air526/bin/classes/com/su/BallonGameActivity$7.class
+#	new file:   air526/bin/classes/com/su/BallonGameActivity$8.class
+#	new file:   air526/bin/classes/com/su/BallonGameActivity$9.class
+#	new file:   air526/bin/classes/com/su/BallonGameActivity$BallonHandlerFly$1.class
+#	new file:   air526/bin/classes/com/su/BallonGameActivity$BallonHandlerFly$2.class
+#	new file:   air526/bin/classes/com/su/BallonGameActivity$BallonHandlerFly.class
+#	new file:   air526/bin/classes/com/su/BallonGameActivity$BallonHandlerHot.class
+#	new file:   air526/bin/classes/com/su/BallonGameActivity$BallonHandlerRoc.class
+#	new file:   air526/bin/classes/com/su/BallonGameActivity$BallonHandlerYellow.class
+#	new file:   air526/bin/classes/com/su/BallonGameActivity$MyThread.class
+#	new file:   air526/bin/classes/com/su/BallonGameActivity$MyThread1.class
+#	new file:   air526/bin/classes/com/su/BallonGameActivity$RocThread.class
+#	new file:   air526/bin/classes/com/su/BallonGameActivity$YellowWhileHandler.class
+#	new file:   air526/bin/classes/com/su/BallonGameActivity.class
+#	new file:   air526/bin/classes/com/su/BuildConfig.class
+#	new file:   air526/bin/classes/com/su/Entry.class
+#	new file:   air526/bin/classes/com/su/MainScreenActivity$1.class
+#	new file:   air526/bin/classes/com/su/MainScreenActivity$2.class
+#	new file:   air526/bin/classes/com/su/MainScreenActivity$3.class
+#	new file:   air526/bin/classes/com/su/MainScreenActivity.class
+#	new file:   air526/bin/classes/com/su/R$anim.class
+#	new file:   air526/bin/classes/com/su/R$array.class
+#	new file:   air526/bin/classes/com/su/R$attr.class
+#	new file:   air526/bin/classes/com/su/R$dimen.class
+#	new file:   air526/bin/classes/com/su/R$drawable.class
+#	new file:   air526/bin/classes/com/su/R$id.class
+#	new file:   air526/bin/classes/com/su/R$layout.class
+#	new file:   air526/bin/classes/com/su/R$menu.class
+#	new file:   air526/bin/classes/com/su/R$raw.class
+#	new file:   air526/bin/classes/com/su/R$string.class
+#	new file:   air526/bin/classes/com/su/R$style.class
+#	new file:   air526/bin/classes/com/su/R.class
+#	new file:   air526/bin/classes/com/su/VibratorUtil.class
+#	new file:   air526/bin/classes/com/su/sqlEngThread.class
+#	new file:   air526/bin/classes/com/tu/Balloon$1.class
+#	new file:   air526/bin/classes/com/tu/Balloon$2.class
+#	new file:   air526/bin/classes/com/tu/Balloon$3.class
+#	new file:   air526/bin/classes/com/tu/Balloon$4.class
+#	new file:   air526/bin/classes/com/tu/Balloon$5.class
+#	new file:   air526/bin/classes/com/tu/Balloon$6.class
+#	new file:   air526/bin/classes/com/tu/Balloon$7.class
+#	new file:   air526/bin/classes/com/tu/Balloon$8.class
+#	new file:   air526/bin/classes/com/tu/Balloon.class
+#	new file:   air526/bin/classes/com/tu/MusicServer$1.class
+#	new file:   air526/bin/classes/com/tu/MusicServer$2.class
+#	new file:   air526/bin/classes/com/tu/MusicServer.class
+#	new file:   air526/bin/classes/com/tu/SpinnerAdapter.class
+#	new file:   air526/bin/classes/com/tu/TxtReader.class
+#	deleted:    air526/bin/resources.ap_
+#	new file:   air526/gen/com/su/BuildConfig.java
+#	new file:   air526/gen/com/su/R.java
+#	modified:   air526/res/layout/main_screen.xml
+#	new file:   air526/res/raw/a.txt
+#	modified:   air526/src/com/su/MainScreenActivity.java
+#	modified:   air526/src/com/tu/Balloon.java
+#	new file:   air526/src/com/tu/TxtReader.java
+#
+
