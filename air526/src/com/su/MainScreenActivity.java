@@ -1,5 +1,7 @@
 package com.su;
 
+import java.io.InputStream;
+
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Intent;
@@ -8,15 +10,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.tu.Balloon;
 import com.tu.MusicServer;
+import com.tu.TxtReader;
+import com.su.R;
 
 public class MainScreenActivity extends Activity {
 
 	Button start;
 	Button cancle;
 	Button about;
+	TextView text;
+	boolean isabout = true;
+	String string;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -28,6 +36,7 @@ public class MainScreenActivity extends Activity {
 		start = (Button)findViewById(R.id.button3);
 		cancle = (Button)findViewById(R.id.button2);
 		about = (Button)findViewById(R.id.button1);
+		text = (TextView) findViewById(R.id.text);
 		
 		start.setOnClickListener(new View.OnClickListener() {			
 			@Override
@@ -70,11 +79,23 @@ public class MainScreenActivity extends Activity {
 			}
 		});
 		
+		InputStream inputStream = getResources().openRawResource(R.raw.a);
+		string = TxtReader.getString(inputStream);
+		
 		about.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				// TODO Auto-generated method stub				
+				if (isabout){
+					text.setText(string);
+					text.setVisibility(View.VISIBLE);
+					isabout = false;
+				}
+				else{
+					text.setVisibility(View.INVISIBLE);
+					isabout = true;
+				}
 				
 			}
 		});

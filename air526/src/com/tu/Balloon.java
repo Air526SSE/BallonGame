@@ -63,6 +63,8 @@ public class Balloon extends Activity {
 	private ArrayAdapter<String> rocdapter;
 	
 	Animation myAnimation;
+	
+	static boolean isBehind = false;
 
 	// private Intent intentMusic = new Intent("com.angel.Android.MUSIC");
 
@@ -71,7 +73,7 @@ public class Balloon extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main2);
-
+		startService(new Intent(Balloon.this, MusicServer.class));
 		Init();
 		
 	}
@@ -308,6 +310,12 @@ public class Balloon extends Activity {
 		
 
 	}
-	
-	
+	protected void onStop() {
+		  // TODO Auto-generated method stub
+		  Intent intent = new Intent(Balloon.this,MusicServer.class);
+		 
+			  stopService(intent);
+			  super.onStop();
+		  
+	}
 }
