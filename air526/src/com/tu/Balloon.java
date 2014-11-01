@@ -30,10 +30,10 @@ import com.su.R;
 
 public class Balloon extends Activity {
 	private static final String[] backgroundstr = { "蓝天","草场","树叶", "海洋" };
-	private static final String[] shapestr = { "笑脸", "热气球","火箭"};
-	private static final String[] monostr = { "正计时", "倒计时" };
+	private static final String[] shapestr = { "灿烂微笑", "绚丽热气球","吹牛火箭"};
+	private static final String[] monostr = { "吹速大挑战——你的速度超出你想象", "15秒倒计时——非一般的酸爽" };
 	
-	private static final String[] hotmode = { "热气球模式——超困难模式，有胆来战" };
+	private static final String[] hotmode = { "吹起热气球——超困难模式，有胆来战" };
 	private static final String[] rocmode = { "火箭模式——程序员脑袋进水的杰作" };
 	
 
@@ -116,7 +116,7 @@ public class Balloon extends Activity {
 
 		back=0;
 		shape="笑脸";
-		mode="正计时";
+		mode="吹速大挑战——你的速度超出你想象";
 		
 		backSpinner.setBackgroundColor(Color.RED);
 		
@@ -175,19 +175,19 @@ public class Balloon extends Activity {
 						
 						shapeselect = shapeSpinner.getSelectedItem().toString();
 						
-						if(shapeselect.equals("笑脸")){
+						if(shapeselect.equals("灿烂微笑")){
 							monoSpinner.setAdapter(monoadapter);
 							balloonImage.setImageResource(R.drawable.yellow20);
 							shape = shapeselect;
-							mode = "正计时";
+							mode = "吹速大挑战——你的速度超出你想象";
 						}
-						if(shapeselect.equals("热气球")){
+						if(shapeselect.equals("绚丽热气球")){
 							monoSpinner.setAdapter(hotdapter);
 							balloonImage.setImageResource(R.drawable.hot22);
 							shape = shapeselect;
-							mode = "热气球模式——超困难模式，有胆来战";
+							mode = "吹起热气球——超困难模式，有胆来战";
 						}
-						if(shapeselect.equals("火箭")){
+						if(shapeselect.equals("吹牛火箭")){
 							monoSpinner.setAdapter(rocdapter);
 							balloonImage.setImageResource(R.drawable.roc26);
 							shape = shapeselect;
@@ -301,9 +301,9 @@ public class Balloon extends Activity {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
 				intent.setClass(Balloon.this, MainScreenActivity.class);
-				startActivity(intent);	
-				//finish();
+				startActivity(intent);					
 				System.exit(0);
+				finish();
 			}
 		});
 
