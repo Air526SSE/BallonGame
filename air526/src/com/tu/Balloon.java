@@ -73,7 +73,7 @@ public class Balloon extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main2);
-
+		startService(new Intent(Balloon.this, MusicServer.class));
 		Init();
 		
 	}
