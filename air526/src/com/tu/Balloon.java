@@ -288,6 +288,7 @@ public class Balloon extends Activity {
 				intent.putExtra("shape", shape);
 				intent.putExtra("mode", mode);
 				
+				onStop();
 				startActivity(intent);
 				//startActivityForResult(intent, 1);
 
@@ -301,6 +302,7 @@ public class Balloon extends Activity {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
 				intent.setClass(Balloon.this, MainScreenActivity.class);
+				onStop();
 				startActivity(intent);					
 				System.exit(0);
 				finish();

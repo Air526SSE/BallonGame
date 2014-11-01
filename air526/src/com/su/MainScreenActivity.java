@@ -30,6 +30,7 @@ public class MainScreenActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_screen);
 		
+		//startService(new Intent(MainScreenActivity.this, MusicServer.class));
 		
 		//startService(new Intent(MainScreenActivity.this, MusicServer.class));
 	
@@ -74,6 +75,7 @@ public class MainScreenActivity extends Activity {
 	            	System.exit(0);
 	            
 	            }*/
+				//onStop();
 				System.exit(0);
 				finish();
 			}
@@ -101,6 +103,15 @@ public class MainScreenActivity extends Activity {
 		});
 	
 	}
+	
+	/*public void onStop() {
+		  // TODO Auto-generated method stub
+		  Intent intent = new Intent(MainScreenActivity.this,MusicServer.class);
+		 
+			  stopService(intent);
+			  super.onStop();
+		  
+	}*/
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
