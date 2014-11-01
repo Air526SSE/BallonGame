@@ -75,7 +75,6 @@ public class MainScreenActivity extends Activity {
 	            
 	            }*/
 				System.exit(0);
-				finish();
 			}
 		});
 		
