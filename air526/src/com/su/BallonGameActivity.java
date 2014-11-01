@@ -33,7 +33,7 @@ public class BallonGameActivity extends Activity {
 	
 	private ImageView imgshow;
 	private TextView score;
-	private TextView test;
+	
 
 	private Button btnRestart;
 	private Button btnBack;
@@ -136,7 +136,7 @@ public class BallonGameActivity extends Activity {
 		soundMap.put(3, soundPool.load(this,R.raw.hot,1));
 		soundMap.put(4, soundPool.load(this,R.raw.rocf,1));
 		
-		test = (TextView) findViewById(R.id.test);
+		
 		
 		imgshow = (ImageView) findViewById(R.id.imgshow);
 		score = (TextView) findViewById(R.id.score);
@@ -442,8 +442,7 @@ public class BallonGameActivity extends Activity {
 		@Override
 		public void handleMessage(Message msg) {
 			if (msg.what == 1) {
-				//int d = msg.arg1;
-				test.setText(msg.arg1+"");
+				
 				if (msg.arg1<=99&&msg.arg1>=80) {
 					
 					count++;
@@ -508,9 +507,7 @@ public class BallonGameActivity extends Activity {
 		@Override
 		public void handleMessage(Message msg) {
 			if (msg.what == 1) {
-				//int d = msg.arg1;
-				//if (d >= 180&&d<=300) {
-				test.setText(msg.arg1+"");
+				
 				if (msg.arg1<=99&&msg.arg1>=80) {
 					
 					count++;

@@ -238,39 +238,21 @@ public final class R {
         public static final int LinearLayout6=0x7f0b0016;
         public static final int LinearLayout7=0x7f0b0018;
         public static final int Lmain=0x7f0b0002;
-<<<<<<< HEAD
         public static final int Mono=0x7f0b0014;
         public static final int Shape=0x7f0b0012;
         public static final int action_settings=0x7f0b0021;
         public static final int btnBack=0x7f0b0008;
         public static final int btnRestart=0x7f0b0007;
-        public static final int button1=0x7f0b001e;
-        public static final int button2=0x7f0b001d;
-        public static final int button3=0x7f0b001f;
+        public static final int button1=0x7f0b001f;
+        public static final int button2=0x7f0b001e;
+        public static final int button3=0x7f0b001b;
         public static final int cancle=0x7f0b0019;
         public static final int color_selected=0x7f0b000f;
         public static final int commit=0x7f0b0017;
         public static final int image=0x7f0b0000;
         public static final int imgshow=0x7f0b0006;
-        public static final int linearLayout1=0x7f0b001b;
+        public static final int linearLayout1=0x7f0b001c;
         public static final int mono_selected=0x7f0b0013;
-=======
-        public static final int Mono=0x7f0b0013;
-        public static final int Shape=0x7f0b0011;
-        public static final int action_settings=0x7f0b0020;
-        public static final int btnBack=0x7f0b0007;
-        public static final int btnRestart=0x7f0b0006;
-        public static final int button1=0x7f0b001e;
-        public static final int button2=0x7f0b001d;
-        public static final int button3=0x7f0b001a;
-        public static final int cancle=0x7f0b0018;
-        public static final int color_selected=0x7f0b000e;
-        public static final int commit=0x7f0b0016;
-        public static final int image=0x7f0b0000;
-        public static final int imgshow=0x7f0b0005;
-        public static final int linearLayout1=0x7f0b001b;
-        public static final int mono_selected=0x7f0b0012;
->>>>>>> origin/master
         public static final int score=0x7f0b0004;
         public static final int scrollView1=0x7f0b001a;
         public static final int shape_selected=0x7f0b0011;
@@ -278,12 +260,8 @@ public final class R {
         public static final int show_time=0x7f0b0003;
         public static final int test=0x7f0b0005;
         public static final int testfly=0x7f0b0001;
-        public static final int text=0x7f0b001c;
-<<<<<<< HEAD
+        public static final int text=0x7f0b001d;
         public static final int text1=0x7f0b0020;
-=======
-        public static final int text1=0x7f0b001f;
->>>>>>> origin/master
     }
     public static final class layout {
         public static final int activity_entry=0x7f030000;
