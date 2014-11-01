@@ -100,7 +100,7 @@ public class BallonGameActivity extends Activity {
 
 	private int recLen = 0;
 	private int lesLen = 9;
-	private int seLen = 10;
+	private int seLen = 15;
 	private int se = 0;
 	private int flynu = 0;
 
@@ -174,9 +174,9 @@ public class BallonGameActivity extends Activity {
 
 				Intent intent = new Intent();
 				intent.setClass(BallonGameActivity.this, Balloon.class);
-				startActivity(intent);
-				//finish();
+				startActivity(intent);				
 				System.exit(0);
+				finish();
 			}
 		});
 
@@ -222,7 +222,7 @@ public class BallonGameActivity extends Activity {
 			amode = intent.getStringExtra("mode");
 		}
 
-		if (amode.equals("正计时")) {
+		if (amode.equals("吹速大挑战——你的速度超出你想象")) {
 
 			initYellowGame();
 			
@@ -236,7 +236,7 @@ public class BallonGameActivity extends Activity {
 					});
 		}
 		
-		if (amode.equals("倒计时")) {
+		if (amode.equals("15秒倒计时——非一般的酸爽")) {
 
 			initGame1();
 
@@ -250,7 +250,7 @@ public class BallonGameActivity extends Activity {
 			});
 		}
 
-		if (amode.equals("热气球模式——超困难模式，有胆来战")) {
+		if (shape.equals("绚丽热气球")) {
 
 			initHotGame();
 			
@@ -264,7 +264,7 @@ public class BallonGameActivity extends Activity {
 			});
 		}
 		
-		if (amode.equals("火箭模式——程序员脑袋进水的杰作")) {
+		if (shape.equals("吹牛火箭")) {
 
 			initFlyGame();
 			
@@ -401,7 +401,7 @@ public class BallonGameActivity extends Activity {
 		// TODO Auto-generated method stub
 		level = 0;
 		lesLen = 9;
-		seLen = 10;
+		seLen = 15;
 		
 		if(preferences.contains("snum"))
 		{
@@ -443,19 +443,21 @@ public class BallonGameActivity extends Activity {
 				int d = msg.arg1;
 				if (d >= 180) {
 					count++;
-					if (count >= 5) {
+					if (count >= 2) {
 						level = level + 1;
 						if (level <= 22) {
 							imgshow.setBackgroundResource(yellow[level]);
 							if (level == 22) {
 								ballsum++;
+								soundPool.play(soundMap.get(2), 1, 1, 0, 0, 1);		
+								VibratorUtil.Vibrate(BallonGameActivity.this,100);
 								level = 0;
 								imgshow.setBackgroundResource(yellow[level]);
 
 								if (seLen <= 0) {
 
 									soundPool.play(soundMap.get(2), 1, 1, 0, 0, 1);		
-									VibratorUtil.Vibrate(BallonGameActivity.this,100);
+									VibratorUtil.Vibrate(BallonGameActivity.this,300);
 									
 									if(!preferences.contains("snum"))
 									{
@@ -472,7 +474,7 @@ public class BallonGameActivity extends Activity {
 										editor.commit();
 									}else
 									{
-										showend.setText("Yes！您吹了 " + ballsum
+										showend.setText("好样的！你只吹了 " + ballsum
 												+ "个球！");
 									}
 									
@@ -505,14 +507,14 @@ public class BallonGameActivity extends Activity {
 				int d = msg.arg1;
 				if (d >= 180) {
 					count++;
-					if (count >= 5) {
+					if (count >= 3) {
 						level++;
 						if (level <= 22) {
 							imgshow.setBackgroundResource(yellow[level]);
 							if (level == 22) {
 
 						soundPool.play(soundMap.get(1), 1, 1, 0, 0, 1);		
-						VibratorUtil.Vibrate(BallonGameActivity.this,100);
+						VibratorUtil.Vibrate(BallonGameActivity.this,300);
 								 
 						if(!preferences.contains("smin"))
 						{
@@ -612,7 +614,7 @@ public class BallonGameActivity extends Activity {
 								nextX = curX;
 
 								soundPool.play(soundMap.get(4), 1, 1, 0, 0, 1);		
-								VibratorUtil.Vibrate(BallonGameActivity.this,200);
+								VibratorUtil.Vibrate(BallonGameActivity.this,300);
 								
 								final Handler bflyhandler = new Handler() {									
 									@Override
@@ -634,7 +636,7 @@ public class BallonGameActivity extends Activity {
 
 										}
 										showend.setVisibility(View.VISIBLE);
-										showend.setText("好吧好吧，火箭你都吹起来了。你太能吹了……不会是吹牛练出来的吧？:)");
+										showend.setText("火箭你都吹起来了，牛肯定没少吹吧？…… ：）");
 									}
 								};
 																
@@ -673,14 +675,14 @@ public class BallonGameActivity extends Activity {
 				int d = msg.arg1;
 				if (d >= 180) {
 					count++;
-					if (count >= 12) {
+					if (count >= 8) {
 						level++;
 						if (level <= 22) {
 							imgshow.setBackgroundResource(hot[level]);
 							if (level == 22) {
 
 								soundPool.play(soundMap.get(3), 1, 1, 0, 0, 1);		
-								VibratorUtil.Vibrate(BallonGameActivity.this,100);
+								VibratorUtil.Vibrate(BallonGameActivity.this,400);
 								
 								if(!preferences.contains("hmin"))
 								{showend.setText("吹神降临！！ 您用了"
@@ -704,7 +706,7 @@ public class BallonGameActivity extends Activity {
 									editor.commit();
 								}else
 								{
-									showend.setText("    我滴神呐!!\n你竟然吹起了一个热气球！ 只用了"
+									showend.setText("    告诉过你很难了！ 你看都用了"
 											+ se + "." + recLen + "秒！");
 								}
 								
