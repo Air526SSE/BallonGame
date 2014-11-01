@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/button1"
         android:layout_alignLeft="@+id/button1"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/back2"
         android:text="退出游戏"
         android:textSize="20dp" />
@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="0dp"
+        android:layout_marginBottom="35dp"
         android:layout_marginRight="0dp"
         android:background="@drawable/about2"
         android:text="关于游戏"
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/button2"
         android:layout_alignLeft="@+id/button2"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/start2"
         android:text="开始游戏"
         android:textSize="20dp" />
