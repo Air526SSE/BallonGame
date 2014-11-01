@@ -12,7 +12,9 @@
      <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content" 
+        android:layout_above="@+id/button3"
+        android:layout_marginBottom="5dp">
 
         <LinearLayout
             android:id="@+id/linearLayout1"
@@ -24,42 +26,42 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#FFFFFF"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>
     </ScrollView>
     
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
-        android:layout_height="46dp"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/button1"
         android:layout_alignLeft="@+id/button1"
-        android:layout_marginBottom="15dp"
-        android:background="#CC1E90FF"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/back2"
         android:text="退出游戏"
-        android:textSize="28dp" />
+        android:textSize="20dp" />
 
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
-        android:layout_height="46dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="62dp"
-        android:layout_marginRight="28dp"
-        android:background="#CC1E90FF"
+        android:layout_marginBottom="0dp"
+        android:layout_marginRight="0dp"
+        android:background="@drawable/about2"
         android:text="关于游戏"
-        android:textSize="28dp" />
+        android:textSize="20dp" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
-        android:layout_height="46dp"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/button2"
         android:layout_alignLeft="@+id/button2"
-        android:layout_marginBottom="16dp"
-        android:background="#CC1E90FF"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/start2"
         android:text="开始游戏"
-        android:textSize="28dp" />
+        android:textSize="20dp" />
 
 </RelativeLayout>
