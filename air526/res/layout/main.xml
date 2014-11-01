@@ -29,6 +29,15 @@
         android:layout_alignParentTop="true"
         android:textColor="#AAFFA500"
         android:text="@string/BestScore" />
+    
+    <TextView
+        android:id="@+id/test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"      
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/show_time"
+        
+        />
 
     </RelativeLayout>
  
