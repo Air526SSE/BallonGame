@@ -452,7 +452,7 @@ public class BallonGameActivity extends Activity {
 							imgshow.setBackgroundResource(yellow[level]);
 							if (level == 22) {
 								ballsum++;
-								soundPool.play(soundMap.get(2), 1, 1, 0, 0, 1);		
+								//soundPool.play(soundMap.get(2), 1, 1, 0, 0, 1);		
 								VibratorUtil.Vibrate(BallonGameActivity.this,100);
 								level = 0;
 								imgshow.setBackgroundResource(yellow[level]);

@@ -73,7 +73,7 @@ public class Balloon extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main2);
-		startService(new Intent(Balloon.this, MusicServer.class));
+		//startService(new Intent(Balloon.this, NewMusicServer.class));
 		Init();
 		
 	}
@@ -288,7 +288,8 @@ public class Balloon extends Activity {
 				intent.putExtra("shape", shape);
 				intent.putExtra("mode", mode);
 				
-				onStop();
+				stopService(new Intent(Balloon.this, NewMusicServer.class));
+				
 				startActivity(intent);
 				//startActivityForResult(intent, 1);
 
@@ -302,7 +303,7 @@ public class Balloon extends Activity {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
 				intent.setClass(Balloon.this, MainScreenActivity.class);
-				onStop();
+				
 				startActivity(intent);					
 				System.exit(0);
 				finish();
@@ -312,12 +313,5 @@ public class Balloon extends Activity {
 		
 
 	}
-	protected void onStop() {
-		  // TODO Auto-generated method stub
-		  Intent intent = new Intent(Balloon.this,MusicServer.class);
-		 
-			  stopService(intent);
-			  super.onStop();
-		  
-	}
+	
 }

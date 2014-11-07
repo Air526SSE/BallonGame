@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.tu.Balloon;
 import com.tu.MusicServer;
+import com.tu.NewMusicServer;
 import com.tu.TxtReader;
 import com.su.R;
 
@@ -30,10 +31,10 @@ public class MainScreenActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_screen);
 		
-		//startService(new Intent(MainScreenActivity.this, MusicServer.class));
-		
-		//startService(new Intent(MainScreenActivity.this, MusicServer.class));
+		startService(new Intent(MainScreenActivity.this, NewMusicServer.class));
 	
+		//startService(new Intent(Balloon.this, NewMusicServer.class));
+		
 		start = (Button)findViewById(R.id.button3);
 		cancle = (Button)findViewById(R.id.button2);
 		about = (Button)findViewById(R.id.button1);
@@ -76,6 +77,7 @@ public class MainScreenActivity extends Activity {
 	            
 	            }*/
 				//onStop();
+				stopService(new Intent(MainScreenActivity.this, NewMusicServer.class));
 				System.exit(0);
 				finish();
 			}
