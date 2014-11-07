@@ -39,6 +39,10 @@ public class BallonGameActivity extends Activity {
 	private Button btnBack;
 	private LinearLayout main;
 
+	private Button btnRestart1;
+	private Button btnBack1;
+	private LinearLayout main1;
+	
 	AnimationDrawable anim;
 
 	private int level = 0, count = 0;
