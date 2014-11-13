@@ -10,7 +10,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/fengmian4"
+        android:icon="@drawable/fengmian5"
         android:label="吹吧"
         android:theme="@style/AppTheme" >
         <activity android:name=".MainScreenActivity" >
